@@ -1,6 +1,7 @@
 ﻿namespace CarShop.Services
 {
     using CarShop.Models.Cars;
+    using CarShop.Models.Issues;
     using CarShop.Models.Users;
     using System.Text.RegularExpressions;
     using static Data.DataConstants;
@@ -47,7 +48,7 @@
             return errors;
         }
 
-        public ICollection<string> IsValidFomCar(AddCarFormModel model)
+        public ICollection<string> IsValidFormCar(AddCarFormModel model)
         {
             var errors = new List<string>();
 
@@ -66,6 +67,23 @@
             if (!Regex.IsMatch(model.PlateNumber, carPlateNumberRegularExpression))
             {
                 errors.Add($"Plate Number is invalid!");
+            }
+
+            return errors;
+        }
+
+        public ICollection<string> IsValidIssueForm(AddIssuesFormModel issue)
+        {
+            var errors = new List<string>();
+
+            if (issue.CarId == null)
+            {
+                errors.Add($"Car ID cannot be empty.");
+            }
+
+            if (issue.Description.Length < issueMinDescription)
+            {
+                errors.Add($"Description '{issue.Description}' is not valid. It must have more than {issueMinDescription} characters.");
             }
 
             return errors;

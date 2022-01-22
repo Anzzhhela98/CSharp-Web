@@ -30,9 +30,4 @@
 		</Content>
 	</ItemGroup>
 
-
-	<ItemGroup>
-	  <Folder Include="Models\Issues\" />
-	</ItemGroup>
-
 </Project>

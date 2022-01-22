@@ -36,7 +36,7 @@
         [HttpPost]
         public HttpResponse Add(AddCarFormModel model)
         {
-            var modelErrors = this.validator.IsValidFomCar(model);
+            var modelErrors = this.validator.IsValidFormCar(model);
 
             if (modelErrors.Any())
             {
