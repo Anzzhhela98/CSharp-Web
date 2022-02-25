@@ -1,0 +1,11 @@
+﻿<div class="container">
+    <h1>Your request is not valid. Errors:</h1>
+    <br />
+
+    <ul>
+        @foreach (var error in Model)
+        {
+           <h1>@error</h1>
+        }
+    </ul>
+</div>

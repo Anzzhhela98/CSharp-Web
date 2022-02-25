@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUSACA", "MUSACA\MUSACA.csproj", "{E33F6862-C53B-46B2-944B-302314B7814D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyWebServer", "..\CSharp-Web-Server\MyWebServer\MyWebServer.csproj", "{608C1076-FC89-4087-90CC-8C813E3686EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E33F6862-C53B-46B2-944B-302314B7814D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E33F6862-C53B-46B2-944B-302314B7814D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E33F6862-C53B-46B2-944B-302314B7814D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E33F6862-C53B-46B2-944B-302314B7814D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{608C1076-FC89-4087-90CC-8C813E3686EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{608C1076-FC89-4087-90CC-8C813E3686EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{608C1076-FC89-4087-90CC-8C813E3686EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{608C1076-FC89-4087-90CC-8C813E3686EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14F4DBF2-6C84-4C12-8380-CE2F43901F33}
+	EndGlobalSection
+EndGlobal
