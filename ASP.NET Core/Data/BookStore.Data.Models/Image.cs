@@ -19,11 +19,6 @@
         public string Extension { get; set; }
 
         [Required]
-        public int BookId { get; set; }
-
-        public Book Book { get; set; }
-
-        [Required]
         public string CreatedByUserId { get; set; }
 
         public virtual ApplicationUser CreatedByUser { get; set; }

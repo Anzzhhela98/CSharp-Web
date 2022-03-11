@@ -1,14 +1,30 @@
 ﻿namespace BookStore.Data.Models
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
 
-    using BookStore.Data.Common.Models;
-
-    public class Characteristic : BaseDeletableModel<int>
+    public class Characteristic
     {
+        public int Id { get; set; }
+
+        [Required]
+        [MaxLength(60)]
+        public string Title { get; set; }
+
         [Required]
         [MaxLength(50)]
         public string Author { get; set; }
+
+        [Required]
+        [MaxLength(400)]
+        public string Description { get; set; }
+
+        [Required]
+        [Range(1, 200)]
+        public int Quantity { get; set; }
+
+        [Range(0.50, 100)]
+        public decimal Price { get; set; }
 
         [Required]
         [MaxLength(3000)]
@@ -30,26 +46,15 @@
 
         [Required]
         [MaxLength(6)]
-        public string IdOfBook { get; set; }
+        public string UniqueIdBook { get; set; }
 
         [Required]
         [MinLength(14)]
         [MaxLength(14)]
         public string ISBN { get; set; }
 
-        [Required]
-        public int CategoryId { get; set; }
+        public string ImageId { get; set; }
 
-        public Category Category { get; set; }
+        public Image Image { get; set; }
     }
 }
-//Автор сър Артър Конан Дойл
-//Страници 141
-//Корица мека
-//Език български
-//Година 2022
-//Дата на получаване 24.02.2022 г.
-//Издателство Фама +
-//ID на книга 614126
-//ISBN 9786191781263
-//Категории Световна класика

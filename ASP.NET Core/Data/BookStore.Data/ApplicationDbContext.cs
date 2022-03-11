@@ -36,6 +36,8 @@
 
         public DbSet<Image> Images { get; set; }
 
+        public DbSet<BookCategories> BookCategories { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -82,6 +84,19 @@
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            builder.Entity<BookCategories>(entity =>
+            {
+                entity.HasKey(sc => new { sc.BookId, sc.CategoryId });
+                entity
+                .HasOne(sc => sc.Book)
+                .WithMany(s => s.BookCategories)
+                .HasForeignKey(sc => sc.BookId);
+                entity
+                .HasOne(sc => sc.Category)
+                .WithMany(c => c.BookCategories)
+                .HasForeignKey(sc => sc.CategoryId);
+            });
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
