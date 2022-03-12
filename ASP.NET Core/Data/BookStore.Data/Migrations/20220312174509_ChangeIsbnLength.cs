@@ -1,33 +1,33 @@
-﻿namespace BookStore.Data.Migrations
-{
-    using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-    public partial class IncreaseMaxLengthOfTitleInCharacteristicTable : Migration
+namespace BookStore.Data.Migrations
+{
+    public partial class ChangeIsbnLength : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Title",
+                name: "ISBN",
                 table: "Characteristics",
-                type: "nvarchar(60)",
-                maxLength: 60,
+                type: "nvarchar(17)",
+                maxLength: 17,
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(30)",
-                oldMaxLength: 30);
+                oldType: "nvarchar(14)",
+                oldMaxLength: 14);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Title",
+                name: "ISBN",
                 table: "Characteristics",
-                type: "nvarchar(30)",
-                maxLength: 30,
+                type: "nvarchar(14)",
+                maxLength: 14,
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(60)",
-                oldMaxLength: 60);
+                oldType: "nvarchar(17)",
+                oldMaxLength: 17);
         }
     }
 }

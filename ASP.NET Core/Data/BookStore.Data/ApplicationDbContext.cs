@@ -38,6 +38,8 @@
 
         public DbSet<BookCategories> BookCategories { get; set; }
 
+        public DbSet<SystemAuthor> SystemAuthors { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

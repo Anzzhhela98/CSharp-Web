@@ -45,13 +45,15 @@
         public string DateOfPublication { get; set; }
 
         [Required]
-        [MaxLength(6)]
+        [MaxLength(10)]
         public string UniqueIdBook { get; set; }
 
         [Required]
-        [MinLength(14)]
-        [MaxLength(14)]
+        [MinLength(17)]
+        [MaxLength(17)]
         public string ISBN { get; set; }
+
+        public bool IsOnPromotional { get; set; }
 
         public string ImageId { get; set; }
 
