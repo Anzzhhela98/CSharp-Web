@@ -1,7 +1,7 @@
 ﻿@model BookStore.Web.ViewModels.Book.CreateBookModel
 
 @{
-    ViewData["Title"] = "Az sum qk";
+    ViewData["Title"] = "Create";
 }
 
 
@@ -95,3 +95,16 @@
 
     <input type="submit" class="btn btn-primary" />
 </form>
+
+<head>
+    <script type="text/javascript">
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <text>
+            $(document).ready(function() {
+                alert('Are you a author?');
+            });
+            </text>
+        }
+    </script>
+</head>

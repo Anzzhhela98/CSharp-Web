@@ -9,6 +9,7 @@
     using BookStore.Data.Repositories;
     using BookStore.Data.Seeding;
     using BookStore.Services.Data;
+    using BookStore.Services.Data.Author;
     using BookStore.Services.Data.Book;
     using BookStore.Services.Mapping;
     using BookStore.Services.Messaging;
@@ -67,6 +68,8 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<ICreateBookService, CreateBookService>();
+            services.AddTransient<IAuthorizedToCreateBookService, AuthorizedToCreateBookService>();
+            services.AddTransient<IAddAuthorInSystemService, AddAuthorInSystemService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
