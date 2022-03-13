@@ -11,6 +11,7 @@
     using BookStore.Services.Data;
     using BookStore.Services.Data.Author;
     using BookStore.Services.Data.Book;
+    using BookStore.Services.Data.Home;
     using BookStore.Services.Mapping;
     using BookStore.Services.Messaging;
     using BookStore.Web.ViewModels;
@@ -70,6 +71,7 @@
             services.AddTransient<ICreateBookService, CreateBookService>();
             services.AddTransient<IAuthorizedToCreateBookService, AuthorizedToCreateBookService>();
             services.AddTransient<IAddAuthorInSystemService, AddAuthorInSystemService>();
+            services.AddTransient<IGetAllBookService, GetAllBookService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

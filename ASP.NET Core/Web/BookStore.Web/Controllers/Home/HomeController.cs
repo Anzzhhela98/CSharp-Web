@@ -2,15 +2,25 @@
 {
     using System.Diagnostics;
 
+    using BookStore.Services.Data.Home;
     using BookStore.Web.ViewModels;
 
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
     {
+        private readonly IGetAllBookService getAllBookService;
+
+        public HomeController(IGetAllBookService getAllBookService)
+        {
+            this.getAllBookService = getAllBookService;
+        }
+
         public IActionResult Index()
         {
-            return this.View();
+            var books = this.getAllBookService.GetAll();
+
+            return this.View(books);
         }
 
         public IActionResult Privacy()

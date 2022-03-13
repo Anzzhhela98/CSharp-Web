@@ -1,9 +1,128 @@
-﻿@using BookStore.Common
+﻿@model List<BookStore.Web.ViewModels.Home.IndexViewModel>
+
+
+@using BookStore.Common
 @{
     this.ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+@*<div class="text-center">
     <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+*@
+
+<div id="m-navigation-product-list-wrapper">
+    <div class="toolbar-top">
+        <div class="toolbar toolbar-products">
+            <div class="modes">
+                <a class="modes-mode mode-list" title="Списък" href="#" data-role="mode-switcher" data-value="list">
+                    <span>Списък</span>
+                </a>
+            </div>
+            <p class="toolbar-amount">
+                Артикули <span class="toolbar-number">1</span>-<span class="toolbar-number">20</span> от <span class="toolbar-number">@Model.Count</span>
+            </p>
+            <div class="toolbar-sorter sorter">
+                <label class="sorter-label">Сортирай по</label>
+                <select data-role="sorter" class="sorter-options">
+                    <option value="received_date" selected="selected">
+                        Дата на получаване
+                    </option>
+                    <option value="price">
+                        Цена
+                    </option>
+                    <option value="name">
+                        Име
+                    </option>
+                </select>
+                <a title="Настрой възходяща посока" href="#" class="action sorter-action sort-desc" data-role="direction-switcher" data-value="asc">
+                    <span>Настрой възходяща посока</span>
+                </a>
+            </div>
+            <div class="field limiter">
+                <label class="label">
+                    <span>Покажи</span>
+                </label>
+                <div class="control">
+                    <select data-role="limiter" class="limiter-options">
+                        <option value="20" selected="selected">
+                            20
+                        </option>
+                        <option value="40">
+                            40
+                        </option>
+                        <option value="60">
+                            60
+                        </option>
+                        <option value="100">
+                            100
+                        </option>
+                        <option value="all">
+                            Всички
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="category-product products wrapper grid products-grid">
+        <ol class="products list items product-items row">
+            @foreach (var book in @Model)
+            {
+                <li class="item product product-item">
+                    <div class="product-item-info" data-container="product-grid">
+                        <a href="https://knigomania.bg/petdeset-dumi-za-d-zhd.html" class="product photo product-item-photo" tabindex="-1">
+                            <span class="product-image-container" style="width:350px;">
+                                <span class="product-image-wrapper" style="padding-bottom: 100%;">
+                                    <img class="product-image-photo " src="@book.ImageUrl" width="350" height="350" alt="@book.Title">
+                                </span>
+                            </span>
+                        </a>
+
+                        <div class="product details product-item-details">
+                            <strong class="product name product-item-name">
+                                <a class="product-item-link" href="https://knigomania.bg/petdeset-dumi-za-d-zhd.html">
+                                    @book.Title
+                                </a>
+                            </strong>
+                            <div class="product author product-item-author product-author">
+                                <a class="product-item-link product-item-author-link" href="https://knigomania.bg/catalogsearch/advanced/result/?author=63054">
+                                    @book.Author
+                                </a>
+                            </div>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="114679" data-price-box="product-id-114679">
+                                <span class="price-container price-final_price tax weee">
+                                    <span id="product-price-114679" data-price-amount="@book.Price" data-price-type="finalPrice" class="price-wrapper "><span class="price">17,90&nbsp;лв.</span></span>
+                                </span>
+                            </div>
+                            <div class="product-item-inner">
+                                <div class="product actions product-item-actions">
+                                    <div class="actions-primary">
+                                        <form data-role="tocart-form" data-product-sku="9789542838203" action="https://knigomania.bg/checkout/cart/add/uenc/aHR0cHM6Ly9rbmlnb21hbmlhLmJnL25ldy1ib29rcy5odG1s/product/114679/" method="post">
+                                            <input type="hidden" name="product" value="114679">
+                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9rbmlnb21hbmlhLmJnL2NoZWNrb3V0L2NhcnQvYWRkL3VlbmMvYUhSMGNITTZMeTlyYm1sbmIyMWhibWxoTG1KbkwyNWxkeTFpYjI5cmN5NW9kRzFzL3Byb2R1Y3QvMTE0Njc5Lw,,">
+                                            <input name="form_key" type="hidden" value="OKWEAXGcnycHNuYb"> <button type="submit" title="Купи" class="action tocart primary">
+                                                <span>Купи</span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div data-role="add-to-links" class="actions-secondary">
+                                        <a href="#" class="action towishlist" title="Добави към Списък с желани продукти" aria-label="Добави към Списък с желани продукти" data-post="{&quot;action&quot;:&quot;https:\/\/knigomania.bg\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:114679,&quot;uenc&quot;:&quot;aHR0cHM6Ly9rbmlnb21hbmlhLmJnL25ldy1ib29rcy5odG1s&quot;}}" data-action="add-to-wishlist" role="button">
+                                            <span>Добави към Списък с желани продукти</span>
+                                        </a>
+                                        <a href="#" class="action tocompare" title="Добави за сравнение" aria-label="Добави за сравнение" data-post="{&quot;action&quot;:&quot;https:\/\/knigomania.bg\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;114679&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly9rbmlnb21hbmlhLmJnL25ldy1ib29rcy5odG1s&quot;}}" role="button">
+                                            <span>Добави за сравнение</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <br/>
+            }
+        </ol>
+    </div>
 </div>

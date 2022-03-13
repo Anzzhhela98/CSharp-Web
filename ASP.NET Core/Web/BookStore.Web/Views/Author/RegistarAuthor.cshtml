@@ -3,13 +3,13 @@
 <form method="post">
     <div>
         <label asp-for="Name"></label>
-        <input type="text" data-val="true" data-val-minlength="The field UserName must be a string or array type with a minimum length of &#x27;6&#x27;." data-val-minlength-min="6" data-val-required="The UserName field is required." id="UserName" name="UserName" value="" />
-        <span class="field-validation-valid" data-valmsg-for="UserName" data-valmsg-replace="true"></span>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
-     <label asp-for="Registrant"></label>
-    <input type="text" data-val="true" data-val-minlength="The field UserName must be a string or array type with a minimum length of &#x27;6&#x27;." data-val-minlength-min="6" data-val-required="The UserName field is required." id="UserName" name="UserName" value="" />
-    <span class="field-validation-valid" data-valmsg-for="Number" data-valmsg-replace="true"></span>
     <div>
-        <input type="submit" />
+    <label asp-for="Registrant"></label>
+    <input asp-for="Registrant" class="form-control" />
+    <span asp-validation-for="Registrant" class="text-danger"></span>
     </div>
+    <input type="submit" />
 </form>
