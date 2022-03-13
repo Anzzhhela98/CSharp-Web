@@ -15,7 +15,7 @@
 
         public bool IsAuthorizedToCreateBook(string userId)
         {
-            return this.db.SystemAuthors.Where(x => x.CreatedByUserId == userId).Any();
+            return this.db.SystemAuthors.Where(x => x.CreatedByUserId == userId && x.Registrant != null).Any();
         }
     }
 }
