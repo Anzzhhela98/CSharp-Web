@@ -40,6 +40,8 @@
 
         public DbSet<SystemAuthor> SystemAuthors { get; set; }
 
+        public DbSet<StoreLocation> StoreLocations { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

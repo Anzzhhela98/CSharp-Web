@@ -3,7 +3,6 @@ namespace BookStore.Data.Models
 {
     using System;
     using System.Collections.Generic;
-
     using BookStore.Data.Common.Models;
 
     using Microsoft.AspNetCore.Identity;

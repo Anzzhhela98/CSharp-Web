@@ -104,6 +104,24 @@ namespace BookStore.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "StoreLocations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WorkingTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StoreLocations", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -232,12 +250,33 @@ namespace BookStore.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SystemAuthors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Registrant = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SystemAuthors", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SystemAuthors_AspNetUsers_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Characteristics",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     Author = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
@@ -247,8 +286,9 @@ namespace BookStore.Data.Migrations
                     Language = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false),
                     DateOfPublication = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UniqueIdBook = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false),
-                    ISBN = table.Column<string>(type: "nvarchar(14)", maxLength: 14, nullable: false),
+                    UniqueIdBook = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    ISBN = table.Column<string>(type: "nvarchar(17)", maxLength: 17, nullable: false),
+                    IsOnPromotional = table.Column<bool>(type: "bit", nullable: false),
                     ImageId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -390,6 +430,11 @@ namespace BookStore.Data.Migrations
                 name: "IX_Settings_IsDeleted",
                 table: "Settings",
                 column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SystemAuthors_CreatedByUserId",
+                table: "SystemAuthors",
+                column: "CreatedByUserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -417,6 +462,12 @@ namespace BookStore.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Settings");
+
+            migrationBuilder.DropTable(
+                name: "StoreLocations");
+
+            migrationBuilder.DropTable(
+                name: "SystemAuthors");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

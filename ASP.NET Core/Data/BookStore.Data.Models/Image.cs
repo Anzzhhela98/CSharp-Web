@@ -2,7 +2,6 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-
     using BookStore.Data.Common.Models;
 
     public class Image : BaseModel<string>
