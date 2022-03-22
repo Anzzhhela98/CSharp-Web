@@ -1,0 +1,48 @@
+﻿@model BookStore.Web.ViewModels.Location.LocationByIdViewModel
+@{
+    ViewData["Title"] = "Location";
+}
+
+<main id="maincontent" class="page-main">
+    <a href="#" id="contentarea" tabindex="-1" style="visibility: hidden; display:none;">skip</a>
+
+    <div class="columns col1-layout">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="page-title-wrapper">
+                        <h2 class="page-title">
+                            <span class="base" data-ui-id="page-title-wrapper">@Model.Name</span>
+                        </h2>
+                    </div>
+                    <div class="page messages">
+                        <div data-placeholder="messages"></div>
+                        <div data-bind="scope: 'messages'">
+                            <!-- ko if: cookieMessages && cookieMessages.length > 0 --><!-- /ko -->
+                            <!-- ko if: messages().messages && messages().messages.length > 0 --><!-- /ko -->
+                        </div>
+
+                    </div><div class="column main">
+                        <input name="form_key" type="hidden" value="ITNynr7jz0cdTJXS">
+                        <div></div><p><strong>адрес: </strong>@Model.Address</p>
+                        <p><strong>телефон: </strong>@Model.PhoneNumber</p>
+                        <p><strong>e-mail</strong>: <a href="mailto:@Model.Email">@Model.Email</a></p>
+                        <p>&nbsp;</p>
+                        <p><strong>Работно време:</strong></p>
+                        <p>Понeделник - петък: @Model.WorkingTime</p>
+                        <p>Събота: 10,00 -18,00 ч.</p>
+                        <p>Неделя: почивен ден</p>
+                        <p>&nbsp;</p>
+                        <p><strong>Местоположение:</strong></p>
+                        <p><iframe style="border: 0;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2932.816383298338!2d23.32188841553484!3d42.68643167916633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa850c1c23f80b%3A0x8312d322c834fb39!2z0JrQvdC40LPQvtC80LDQvdC40Y8!5e0!3m2!1sbg!2sbg!4v1490881489048" width="600" height="450"></iframe></p>
+                        <p>&nbsp;</p>
+                        <p><strong>Снимка от книжарницата:</strong></p>
+                        <p><strong>
+                         <img src="@Model.Image" alt=""></strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

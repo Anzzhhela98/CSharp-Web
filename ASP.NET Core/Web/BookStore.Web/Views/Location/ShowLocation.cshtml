@@ -1,0 +1,102 @@
+﻿@model List<BookStore.Web.ViewModels.Location.LocationViewModel>
+@{
+    ViewData["Title"] = "Locations";
+}
+
+
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+        $(".header-style-1 .header-top .header-top-links .toplinks-wrapper .header.links li").not(".myaccount-link").mouseover(function () {
+            $(".header-style-1 .header-top .header-top-links .toplinks-wrapper .header.links").addClass('toplinks_hover');
+        }).mouseout(function () {
+            $(".header-style-1 .header-top .header-top-links .toplinks-wrapper .header.links").removeClass('toplinks_hover');
+        });
+    });
+</script>
+<div class="breadcrumbs">
+    <div class="container">
+        <ul class="items">
+            <li class="item home">
+                <a href="/" title="Отиди на основата страница">
+                    Основна страница
+                </a>
+            </li>
+            <li class="item cms_page">
+                <strong>Книжарници</strong>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<main id="maincontent" class="page-main">
+    <a href="#" id="contentarea" tabindex="-1" style="visibility: hidden; display:none;">skip</a>
+    <div class="columns col1-layout">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="page-title-wrapper">
+                        <h2 class="page-title">
+                            <span class="base" data-ui-id="page-title-wrapper">Книжарници</span>
+                        </h2>
+                    </div>
+                    <div class="page messages">
+                        <div data-placeholder="messages"></div>
+                        <div data-bind="scope: 'messages'">
+                        </div>
+
+                    </div><div class="column main">
+                        <input name="form_key" type="hidden" value="ITNynr7jz0cdTJXS">
+
+
+
+                        <div></div><table style="width: 580px; height: 185px;" border="0">
+                            <tbody>
+                                @foreach (var location in @Model)
+                                {
+                                    <tr>
+                                        <td><img alt="" src="@location.Image" height="99" width="149"></td>
+                                        <td>
+                                            <p class="stores"><a href="https://knigomania.bg/levski"><strong>@location.Name</strong></a></p>
+                                            <p class="stores">@location.Address</p>
+                                            <p class="stores">@location.PhoneNumber</p>
+                                            <p class="stores"><strong><span>@location.Email</span></strong></p>
+                                            <p class="stores">
+                                                <a asp-controller="Location"
+                                               asp-action="LocationById" asp-route-id=@location.Id>виж повече</a>
+                                            </p>
+@*                               <p>
+                                    <a href="/Location/ShowLocation?Id=1" class="btn btn-primary btn-block text-uppercase">Join</a>
+                              </p>*@
+                                        </td>
+                                    </tr>
+                                }
+
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        @*<p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

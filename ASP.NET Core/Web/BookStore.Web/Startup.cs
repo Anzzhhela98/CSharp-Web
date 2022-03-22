@@ -12,6 +12,7 @@
     using BookStore.Services.Data.Author;
     using BookStore.Services.Data.Book;
     using BookStore.Services.Data.Home;
+    using BookStore.Services.Data.Location;
     using BookStore.Services.Mapping;
     using BookStore.Services.Messaging;
     using BookStore.Web.ViewModels;
@@ -72,6 +73,8 @@
             services.AddTransient<IAuthorizedToCreateBookService, AuthorizedToCreateBookService>();
             services.AddTransient<IAddAuthorInSystemService, AddAuthorInSystemService>();
             services.AddTransient<IGetAllBookService, GetAllBookService>();
+            services.AddTransient<IShowLocationService, ShowLocationService>();
+            services.AddTransient<IShowLocationByIdService, ShowLocationByIdService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
