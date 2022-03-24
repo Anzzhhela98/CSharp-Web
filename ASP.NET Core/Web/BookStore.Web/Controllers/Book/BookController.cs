@@ -1,9 +1,11 @@
 ﻿namespace BookStore.Web.Controllers
 {
+    using System.Linq;
     using System.Security.Claims;
 
     using BookStore.Data.Models;
     using BookStore.Services.Data.Book;
+    using BookStore.Services.Data.Home;
     using BookStore.Web.ViewModels.Book;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
@@ -14,15 +16,17 @@
     {
         private readonly ICreateBookService createBookService;
         private readonly IAuthorizedToCreateBookService authorizedToCreateBook;
+        private readonly IGetBookService promotionalBookService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IHttpContextAccessor httpContextAccessor;
 
-        public BookController(ICreateBookService createBookService, UserManager<ApplicationUser> userManager, IAuthorizedToCreateBookService authorizedToCreateBook, IHttpContextAccessor httpContextAccessor)
+        public BookController(ICreateBookService createBookService, UserManager<ApplicationUser> userManager, IAuthorizedToCreateBookService authorizedToCreateBook, IHttpContextAccessor httpContextAccessor, IGetBookService promotionalBookService)
         {
             this.createBookService = createBookService;
             this.userManager = userManager;
             this.authorizedToCreateBook = authorizedToCreateBook;
             this.httpContextAccessor = httpContextAccessor;
+            this.promotionalBookService = promotionalBookService;
         }
 
         public IActionResult Create()
@@ -33,7 +37,7 @@
 
             if (!isAuthorizedToCreateBook)
             {
-                return Redirect("/Author/RegistarAuthor");
+                return this.Redirect("/Author/RegistarAuthor");
             }
 
             return this.View();
@@ -51,6 +55,13 @@
             this.createBookService.CreateBook(model);
 
             return this.Redirect("/");
+        }
+
+        public IActionResult PromotionalBooks()
+        {
+            var promotionalBooks = this.promotionalBookService.GetPromotionalBooks();
+
+            return this.View(promotionalBooks);
         }
     }
 }

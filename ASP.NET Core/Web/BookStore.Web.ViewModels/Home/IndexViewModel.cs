@@ -11,5 +11,7 @@
         public string ImageUrl { get; set; }
 
         public int Id { get; set; }
+
+        public bool IsOnPromotional { get; set; }
     }
 }

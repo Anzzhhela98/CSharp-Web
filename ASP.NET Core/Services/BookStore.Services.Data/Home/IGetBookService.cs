@@ -4,8 +4,10 @@
 
     using BookStore.Web.ViewModels.Home;
 
-    public interface IGetAllBookService
+    public interface IGetBookService
     {
         List<IndexViewModel> GetAll();
+
+        List<IndexViewModel> GetPromotionalBooks();
     }
 }

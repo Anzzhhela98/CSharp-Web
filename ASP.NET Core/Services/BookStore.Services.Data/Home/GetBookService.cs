@@ -6,11 +6,11 @@
     using BookStore.Data;
     using BookStore.Web.ViewModels.Home;
 
-    public class GetAllBookService : IGetAllBookService
+    public class GetBookService : IGetBookService
     {
         private readonly ApplicationDbContext db;
 
-        public GetAllBookService(ApplicationDbContext db)
+        public GetBookService(ApplicationDbContext db)
         {
             this.db = db;
         }
@@ -26,6 +26,24 @@
                         ImageUrl = this.db.Images.Where(i => i.Id == x.ImageId).Select(x => x.ImageUrl).FirstOrDefault(),
                         Id = x.Id,
                     }).ToList();
+
+            return book;
+        }
+
+        public List<IndexViewModel> GetPromotionalBooks()
+        {
+            var book = this.db.Characteristics
+                    .Select(x => new IndexViewModel
+                    {
+                        Price = x.Price.ToString(),
+                        Author = x.Author,
+                        Title = x.Title,
+                        ImageUrl = this.db.Images.Where(i => i.Id == x.ImageId).Select(x => x.ImageUrl).FirstOrDefault(),
+                        Id = x.Id,
+                        IsOnPromotional = x.IsOnPromotional,
+                    })
+                    .Where(x => x.IsOnPromotional == true)
+                    .ToList();
 
             return book;
         }

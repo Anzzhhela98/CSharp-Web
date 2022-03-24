@@ -9,9 +9,9 @@
 
     public class HomeController : BaseController
     {
-        private readonly IGetAllBookService getAllBookService;
+        private readonly IGetBookService getAllBookService;
 
-        public HomeController(IGetAllBookService getAllBookService)
+        public HomeController(IGetBookService getAllBookService)
         {
             this.getAllBookService = getAllBookService;
         }

@@ -72,7 +72,7 @@
             services.AddTransient<ICreateBookService, CreateBookService>();
             services.AddTransient<IAuthorizedToCreateBookService, AuthorizedToCreateBookService>();
             services.AddTransient<IAddAuthorInSystemService, AddAuthorInSystemService>();
-            services.AddTransient<IGetAllBookService, GetAllBookService>();
+            services.AddTransient<IGetBookService, GetBookService>();
             services.AddTransient<IShowLocationService, ShowLocationService>();
             services.AddTransient<IShowLocationByIdService, ShowLocationByIdService>();
         }
