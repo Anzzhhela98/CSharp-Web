@@ -16,7 +16,7 @@
         public string Author { get; set; }
 
         [Required]
-        [MaxLength(400)]
+        [MaxLength(1000)]
         public string Description { get; set; }
 
         [Required]
@@ -29,6 +29,9 @@
         [Required]
         [MaxLength(3000)]
         public int Pages { get; set; }
+
+        [Required]
+        public string Category { get; set; }
 
         [Required]
         [MaxLength(20)]

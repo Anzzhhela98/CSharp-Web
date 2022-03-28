@@ -17,18 +17,21 @@
         private readonly ICreateBookService createBookService;
         private readonly IAuthorizedToCreateBookService authorizedToCreateBook;
         private readonly IGetBookService promotionalBookService;
+        private readonly IBooksService booksService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IHttpContextAccessor httpContextAccessor;
 
-        public BookController(ICreateBookService createBookService, UserManager<ApplicationUser> userManager, IAuthorizedToCreateBookService authorizedToCreateBook, IHttpContextAccessor httpContextAccessor, IGetBookService promotionalBookService)
+        public BookController(ICreateBookService createBookService, UserManager<ApplicationUser> userManager, IAuthorizedToCreateBookService authorizedToCreateBook, IHttpContextAccessor httpContextAccessor, IGetBookService promotionalBookService,IBooksService booksService)
         {
             this.createBookService = createBookService;
             this.userManager = userManager;
             this.authorizedToCreateBook = authorizedToCreateBook;
             this.httpContextAccessor = httpContextAccessor;
             this.promotionalBookService = promotionalBookService;
+            this.booksService = booksService;
         }
 
+        [Authorize]
         public IActionResult Create()
         {
             var userId = this.httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -62,6 +65,21 @@
             var promotionalBooks = this.promotionalBookService.GetPromotionalBooks();
 
             return this.View(promotionalBooks);
+        }
+
+        public IActionResult All(int id = 1)
+        {
+            const int itemsPerPage = 4;
+
+            var books = new BooksInListModel
+            {
+                ItemsPerPage = itemsPerPage,
+                PageNumber = id,
+                BooksCount = this.booksService.GetCount(),
+                Books = this.booksService.GetAll(id, itemsPerPage),
+            };
+
+            return this.View(books);
         }
     }
 }
