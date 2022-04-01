@@ -1,7 +1,16 @@
-﻿@using BookStore.Common
+﻿@model BookStore.Web.ViewModels.Book.BooksInListModel
+@using BookStore.Common
 @{
     this.ViewData["Title"] = "Promotional Books";
 }
+
+@*<div class="text-center">
+    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+*@
+
+<h1>@this.ViewData["Title"]</h1>
 
 @*<div class="text-center">
     <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
@@ -18,7 +27,7 @@
                 </a>
             </div>
             <p class="toolbar-amount">
-                Артикули <span class="toolbar-number">1</span>-<span class="toolbar-number">20</span> от <span class="toolbar-number">@Model.Count</span>
+                Артикули <span class="toolbar-number">1</span>-<span class="toolbar-number">20</span> от <span class="toolbar-number">@Model.Books.Count()</span>
             </p>
             <div class="toolbar-sorter sorter">
                 <label class="sorter-label">Сортирай по</label>
@@ -66,7 +75,7 @@
 
     <div class="category-product products wrapper grid products-grid">
         <ol class="products list items product-items row">
-            @foreach (var book in @Model)
+            @foreach (var book in @Model.Books)
             {
                 <li class="item product product-item">
                     <div class="product-item-info" data-container="product-grid">
@@ -123,3 +132,38 @@
         </ol>
     </div>
 </div>
+<hr />
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @if(!Model.HasPreviousPage) {
+        <text>disabled</text>}">
+            <span class="page-link" asp-action="Promotional" asp-route-id="@Model.PreviousPageNumber">Previous</span>
+        </li>
+        @for (int i = Model.PageNumber - 3; i < Model.PageNumber; i++)
+        {
+            if (@i > 0)
+            {
+                <li class="page-item"><a class="page-link" asp-action="Promotional" asp-route-id="@i">@i</a></li>
+            }
+        }
+        <li class="page-item active">
+            <span class="page-link">
+                @Model.PageNumber
+                <span class="sr-only">(current)</span>
+            </span>
+        </li>
+           @for (int i = Model.PageNumber + 1; i <= @Model.PageNumber + 3; i++)
+        {
+            if (@i <= Model.PagesCount)
+            {
+                <li class="page-item"><a class="page-link" asp-action="Promotional" asp-route-id="@i">@i</a></li>
+            }
+        }
+
+        <li class="page-item @if(!Model.HasNextPage) {
+        <text>disabled</text>
+} ">
+            <a class="page-link" asp-action="Promotional" asp-route-id="@Model.NextPageNumber">Next</a>
+        </li>
+    </ul>
+</nav>

@@ -271,14 +271,14 @@ namespace BookStore.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Characteristics",
+                name: "Books",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     Author = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Pages = table.Column<int>(type: "int", maxLength: 3000, nullable: false),
@@ -289,26 +289,8 @@ namespace BookStore.Data.Migrations
                     UniqueIdBook = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     ISBN = table.Column<string>(type: "nvarchar(17)", maxLength: 17, nullable: false),
                     IsOnPromotional = table.Column<bool>(type: "bit", nullable: false),
-                    ImageId = table.Column<string>(type: "nvarchar(450)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Characteristics", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Characteristics_Images_ImageId",
-                        column: x => x.ImageId,
-                        principalTable: "Images",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Books",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CharacteristicId = table.Column<int>(type: "int", nullable: false),
+                    ImageId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
                     CreatedByUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
@@ -321,33 +303,15 @@ namespace BookStore.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Books_Characteristics_CharacteristicId",
-                        column: x => x.CharacteristicId,
-                        principalTable: "Characteristics",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "BookCategories",
-                columns: table => new
-                {
-                    BookId = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BookCategories", x => new { x.BookId, x.CategoryId });
-                    table.ForeignKey(
-                        name: "FK_BookCategories_Books_BookId",
-                        column: x => x.BookId,
-                        principalTable: "Books",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_BookCategories_Categories_CategoryId",
+                        name: "FK_Books_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Books_Images_ImageId",
+                        column: x => x.ImageId,
+                        principalTable: "Images",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -402,14 +366,9 @@ namespace BookStore.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BookCategories_CategoryId",
-                table: "BookCategories",
-                column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Books_CharacteristicId",
+                name: "IX_Books_CategoryId",
                 table: "Books",
-                column: "CharacteristicId");
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_CreatedByUserId",
@@ -417,8 +376,8 @@ namespace BookStore.Data.Migrations
                 column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Characteristics_ImageId",
-                table: "Characteristics",
+                name: "IX_Books_ImageId",
+                table: "Books",
                 column: "ImageId");
 
             migrationBuilder.CreateIndex(
@@ -455,7 +414,7 @@ namespace BookStore.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "BookCategories");
+                name: "Books");
 
             migrationBuilder.DropTable(
                 name: "InternationalStandardBookNumbers");
@@ -473,13 +432,7 @@ namespace BookStore.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Books");
-
-            migrationBuilder.DropTable(
                 name: "Categories");
-
-            migrationBuilder.DropTable(
-                name: "Characteristics");
 
             migrationBuilder.DropTable(
                 name: "Images");

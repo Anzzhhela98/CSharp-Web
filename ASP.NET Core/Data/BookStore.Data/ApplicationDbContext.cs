@@ -26,17 +26,13 @@
 
         public DbSet<Setting> Settings { get; set; }
 
-        public DbSet<Book> Books { get; set; }
-
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<Characteristic> Characteristics { get; set; }
+        public DbSet<Book> Books { get; set; }
 
         public DbSet<InternationalStandardBookNumber> InternationalStandardBookNumbers { get; set; }
 
         public DbSet<Image> Images { get; set; }
-
-        public DbSet<BookCategories> BookCategories { get; set; }
 
         public DbSet<SystemAuthor> SystemAuthors { get; set; }
 
@@ -89,18 +85,18 @@
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
 
-            builder.Entity<BookCategories>(entity =>
-            {
-                entity.HasKey(sc => new { sc.BookId, sc.CategoryId });
-                entity
-                .HasOne(sc => sc.Book)
-                .WithMany(s => s.BookCategories)
-                .HasForeignKey(sc => sc.BookId);
-                entity
-                .HasOne(sc => sc.Category)
-                .WithMany(c => c.BookCategories)
-                .HasForeignKey(sc => sc.CategoryId);
-            });
+            //builder.Entity<BookCategories>(entity =>
+            //{
+            //    entity.HasKey(sc => new { sc.BookId, sc.CategoryId });
+            //    entity
+            //    .HasOne(sc => sc.Book)
+            //    .WithMany(s => s.BookCategories)
+            //    .HasForeignKey(sc => sc.BookId);
+            //    entity
+            //    .HasOne(sc => sc.Category)
+            //    .WithMany(c => c.BookCategories)
+            //    .HasForeignKey(sc => sc.CategoryId);
+            //});
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

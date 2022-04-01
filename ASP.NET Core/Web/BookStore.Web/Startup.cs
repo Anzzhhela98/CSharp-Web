@@ -11,7 +11,6 @@
     using BookStore.Services.Data;
     using BookStore.Services.Data.Author;
     using BookStore.Services.Data.Book;
-    using BookStore.Services.Data.Home;
     using BookStore.Services.Data.Location;
     using BookStore.Services.Mapping;
     using BookStore.Services.Messaging;
@@ -69,10 +68,8 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
-            services.AddTransient<ICreateBookService, CreateBookService>();
             services.AddTransient<IAuthorizedToCreateBookService, AuthorizedToCreateBookService>();
             services.AddTransient<IAddAuthorInSystemService, AddAuthorInSystemService>();
-            services.AddTransient<IGetBookService, GetBookService>();
             services.AddTransient<IShowLocationService, ShowLocationService>();
             services.AddTransient<IShowLocationByIdService, ShowLocationByIdService>();
             services.AddTransient<IBooksService, BooksService>();

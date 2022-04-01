@@ -1,6 +1,6 @@
 ﻿namespace BookStore.Web.ViewModels.Home
 {
-    public class IndexViewModel
+    public class BookViewModel
     {
         public string Author { get; set; }
 
@@ -13,5 +13,6 @@
         public int Id { get; set; }
 
         public bool IsOnPromotional { get; set; }
+
     }
 }

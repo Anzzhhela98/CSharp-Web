@@ -29,7 +29,6 @@
                               new SettingsSeeder(),
                               new CategoriesSeeder(),
                               new ImageSeeder(),
-                              new CharacteristicSeeder(),
                               new BookSeeder(),
                               new StoreLocationSeeder(),
                           };

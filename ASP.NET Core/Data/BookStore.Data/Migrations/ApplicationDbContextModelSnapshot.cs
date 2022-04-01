@@ -146,73 +146,22 @@ namespace BookStore.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CharacteristicId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CharacteristicId");
-
-                    b.HasIndex("CreatedByUserId");
-
-                    b.ToTable("Books");
-                });
-
-            modelBuilder.Entity("BookStore.Data.Models.BookCategories", b =>
-                {
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BookId", "CategoryId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("BookCategories");
-                });
-
-            modelBuilder.Entity("BookStore.Data.Models.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("BookStore.Data.Models.Characteristic", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<string>("Author")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Cover")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("CreatedByUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("DateOfPublication")
                         .IsRequired()
@@ -264,9 +213,29 @@ namespace BookStore.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("CreatedByUserId");
+
                     b.HasIndex("ImageId");
 
-                    b.ToTable("Characteristics");
+                    b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("BookStore.Data.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("BookStore.Data.Models.Image", b =>
@@ -532,9 +501,9 @@ namespace BookStore.Data.Migrations
 
             modelBuilder.Entity("BookStore.Data.Models.Book", b =>
                 {
-                    b.HasOne("BookStore.Data.Models.Characteristic", "Characteristic")
-                        .WithMany()
-                        .HasForeignKey("CharacteristicId")
+                    b.HasOne("BookStore.Data.Models.Category", "Category")
+                        .WithMany("Books")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -544,35 +513,13 @@ namespace BookStore.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Characteristic");
-
-                    b.Navigation("CreatedByUser");
-                });
-
-            modelBuilder.Entity("BookStore.Data.Models.BookCategories", b =>
-                {
-                    b.HasOne("BookStore.Data.Models.Book", "Book")
-                        .WithMany("BookCategories")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("BookStore.Data.Models.Category", "Category")
-                        .WithMany("BookCategories")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("BookStore.Data.Models.Characteristic", b =>
-                {
                     b.HasOne("BookStore.Data.Models.Image", "Image")
                         .WithMany()
                         .HasForeignKey("ImageId");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("CreatedByUser");
 
                     b.Navigation("Image");
                 });
@@ -659,14 +606,9 @@ namespace BookStore.Data.Migrations
                     b.Navigation("Roles");
                 });
 
-            modelBuilder.Entity("BookStore.Data.Models.Book", b =>
-                {
-                    b.Navigation("BookCategories");
-                });
-
             modelBuilder.Entity("BookStore.Data.Models.Category", b =>
                 {
-                    b.Navigation("BookCategories");
+                    b.Navigation("Books");
                 });
 #pragma warning restore 612, 618
         }

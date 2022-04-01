@@ -2,16 +2,16 @@
 {
     using System.Diagnostics;
 
-    using BookStore.Services.Data.Home;
+    using BookStore.Services.Data.Book;
     using BookStore.Web.ViewModels;
 
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
     {
-        private readonly IGetBookService getAllBookService;
+        private readonly IBooksService getAllBookService;
 
-        public HomeController(IGetBookService getAllBookService)
+        public HomeController(IBooksService getAllBookService)
         {
             this.getAllBookService = getAllBookService;
         }

@@ -11,6 +11,7 @@
         [Required]
         public string Type { get; set; }
 
-        public ICollection<BookCategories> BookCategories { get; set; } = new HashSet<BookCategories>();
+        public ICollection<Book> Books { get; set; }
+            = new HashSet<Book>();
     }
 }

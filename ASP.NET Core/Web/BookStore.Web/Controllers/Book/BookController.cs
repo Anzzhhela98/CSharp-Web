@@ -5,7 +5,6 @@
 
     using BookStore.Data.Models;
     using BookStore.Services.Data.Book;
-    using BookStore.Services.Data.Home;
     using BookStore.Web.ViewModels.Book;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
@@ -14,20 +13,16 @@
 
     public class BookController : Controller
     {
-        private readonly ICreateBookService createBookService;
         private readonly IAuthorizedToCreateBookService authorizedToCreateBook;
-        private readonly IGetBookService promotionalBookService;
         private readonly IBooksService booksService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IHttpContextAccessor httpContextAccessor;
 
-        public BookController(ICreateBookService createBookService, UserManager<ApplicationUser> userManager, IAuthorizedToCreateBookService authorizedToCreateBook, IHttpContextAccessor httpContextAccessor, IGetBookService promotionalBookService,IBooksService booksService)
+        public BookController(UserManager<ApplicationUser> userManager, IAuthorizedToCreateBookService authorizedToCreateBook, IHttpContextAccessor httpContextAccessor, IBooksService booksService)
         {
-            this.createBookService = createBookService;
             this.userManager = userManager;
             this.authorizedToCreateBook = authorizedToCreateBook;
             this.httpContextAccessor = httpContextAccessor;
-            this.promotionalBookService = promotionalBookService;
             this.booksService = booksService;
         }
 
@@ -55,16 +50,24 @@
                 return this.View();
             }
 
-            this.createBookService.CreateBook(model);
+            this.booksService.CreateBook(model);
 
             return this.Redirect("/");
         }
 
-        public IActionResult PromotionalBooks()
+        public IActionResult Promotional(int id = 1)
         {
-            var promotionalBooks = this.promotionalBookService.GetPromotionalBooks();
+            const int itemsPerPage = 4;
 
-            return this.View(promotionalBooks);
+            var books = new BooksInListModel
+            {
+                ItemsPerPage = itemsPerPage,
+                PageNumber = id,
+                BooksCount = this.booksService.GetPromotionalBooksCount(),
+                Books = this.booksService.GetAllPromotional(id, itemsPerPage),
+            };
+            ;
+            return this.View(books);
         }
 
         public IActionResult All(int id = 1)
@@ -76,10 +79,15 @@
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
                 BooksCount = this.booksService.GetCount(),
-                Books = this.booksService.GetAll(id, itemsPerPage),
+                Books = this.booksService.GetAll(id,itemsPerPage),
             };
-
+            ;
             return this.View(books);
+        }
+
+        public IActionResult GetById()
+        {
+            return this.View();
         }
     }
 }
