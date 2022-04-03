@@ -5,7 +5,7 @@
 
     using BookStore.Data.Models;
     using BookStore.Services.Data.Book;
-    using BookStore.Web.ViewModels.Book;
+    using BookStore.Web.ViewModels.Books;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
@@ -79,15 +79,17 @@
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
                 BooksCount = this.booksService.GetCount(),
-                Books = this.booksService.GetAll(id,itemsPerPage),
+                Books = this.booksService.GetAll(id, itemsPerPage),
             };
             ;
             return this.View(books);
         }
 
-        public IActionResult GetById()
+        public IActionResult GetById(int id)
         {
-            return this.View();
+            var book = this.booksService.GetById(id);
+
+            return this.View(book);
         }
     }
 }

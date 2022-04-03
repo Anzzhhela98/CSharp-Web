@@ -7,7 +7,8 @@
 
     using BookStore.Data;
     using BookStore.Data.Models;
-    using BookStore.Web.ViewModels.Book;
+    using BookStore.Services.Mapping;
+    using BookStore.Web.ViewModels.Books;
     using BookStore.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Http;
 
@@ -164,6 +165,13 @@
                     })
                     .Where(x => x.IsOnPromotional == true)
                     .ToList();
+
+            return book;
+        }
+
+        public SingleBookViewModel GetById(int id)
+        {
+            var book = this.db.Books.Where(x => x.Id == id).To<SingleBookViewModel>().FirstOrDefault();
 
             return book;
         }

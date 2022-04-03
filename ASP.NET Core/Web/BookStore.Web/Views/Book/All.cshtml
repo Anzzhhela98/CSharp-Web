@@ -1,4 +1,4 @@
-﻿@model BookStore.Web.ViewModels.Book.BooksInListModel
+﻿@model BookStore.Web.ViewModels.Books.BooksInListModel
 
 
 @using BookStore.Common
@@ -74,24 +74,23 @@
             {
                 <li class="item product product-item">
                     <div class="product-item-info" data-container="product-grid">
-                        <a href="https://knigomania.bg/petdeset-dumi-za-d-zhd.html" class="product photo product-item-photo" tabindex="-1">
-                            <span class="product-image-container" style="width:350px;">
-                                <span class="product-image-wrapper" style="padding-bottom: 100%;">
-                                    <img class="product-image-photo " src="@book.ImageUrl" width="350" height="350" alt="@book.Title">
-                                </span>
+                        <div class="media col-md-4">
+                            <img src="@book.ImageUrl" width="300" class="mr-3 img-responsive">
+                        </div>
+                        @* <span class="product-image-container" style="width:350px;">
+                            <span class="product-image-wrapper" style="padding-bottom: 100%;">
+                            <img class="product-image-photo " src="@book.ImageUrl" width="350" height="350" alt="@book.Title">
                             </span>
-                        </a>
+                            </span>*@
 
                         <div class="product details product-item-details">
                             <strong class="product name product-item-name">
-                                <a class="product-item-link" href="https://knigomania.bg/petdeset-dumi-za-d-zhd.html">
+                                <a class="product-item-link" asp-action="GetById" asp-route-id="@book.Id">
                                     @book.Title
                                 </a>
                             </strong>
                             <div class="product author product-item-author product-author">
-                                <a class="product-item-link product-item-author-link" href="https://knigomania.bg/catalogsearch/advanced/result/?author=63054">
-                                    @book.Author
-                                </a>
+                                @book.Author
                             </div>
                             <div class="price-box price-final_price" data-role="priceBox" data-product-id="114679" data-price-box="product-id-114679">
                                 <span class="price-container price-final_price tax weee">
@@ -131,7 +130,8 @@
 <nav aria-label="...">
     <ul class="pagination justify-content-center">
         <li class="page-item @if(!Model.HasPreviousPage) {
-        <text>disabled</text>}">
+        <text>disabled</text>
+}">
             <span class="page-link" asp-action="All" asp-route-id="@Model.PreviousPageNumber">Previous</span>
         </li>
         @for (int i = Model.PageNumber - 3; i < Model.PageNumber; i++)
@@ -147,7 +147,7 @@
                 <span class="sr-only">(current)</span>
             </span>
         </li>
-           @for (int i = Model.PageNumber + 1; i <= @Model.PageNumber + 3; i++)
+        @for (int i = Model.PageNumber + 1; i <= @Model.PageNumber + 3; i++)
         {
             if (@i <= Model.PagesCount)
             {

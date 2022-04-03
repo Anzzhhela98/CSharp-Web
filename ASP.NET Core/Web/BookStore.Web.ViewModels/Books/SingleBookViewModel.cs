@@ -1,6 +1,9 @@
-﻿namespace BookStore.Web.ViewModels.Book
+﻿namespace BookStore.Web.ViewModels.Books
 {
-    public class SingleBookViewModel
+    using BookStore.Data.Models;
+    using BookStore.Services.Mapping;
+
+    public class SingleBookViewModel : IMapFrom<Book>
     {
         public int Id { get; set; }
 
@@ -10,11 +13,11 @@
 
         public string Price { get; set; }
 
-        public string ImageUrl { get; set; }
+        public string ImageImageUrl { get; set; }
 
         public bool IsOnPromotional { get; set; }
 
-        public string Type { get; set; }
+        public string CategoryType { get; set; }
 
         public int Pages { get; set; }
 
@@ -28,14 +31,10 @@
 
         public string DateOfPublication { get; set; }
 
-        public string IdOfBook { get; set; }
-
         public string ISBN { get; set; }
-
-        public int CategoryId { get; set; }
 
         public string Description { get; set; }
 
-        public string ImageURl { get; set; }
+        public string UniqueIdBook { get; set; }
     }
 }

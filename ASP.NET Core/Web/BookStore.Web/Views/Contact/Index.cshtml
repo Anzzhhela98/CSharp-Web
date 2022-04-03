@@ -1,0 +1,77 @@
+﻿@model BookStore.Web.ViewModels.Contact.ContactsViewModel
+
+@{
+    this.ViewData["Title"] = $"Contact";
+}
+
+<main id="maincontent" class="page-main"><a href="#" id="contentarea" tabindex="-1" style="visibility: hidden; display:none;">skip</a>
+<div class="columns col1-layout"><div class="container"><div class="row"><div class="col-lg-12 col-md-12"> <div class="page-title-wrapper">
+<h2 class="page-title">
+<span class="base" data-ui-id="page-title-wrapper">За контакт</span> </h2>
+</div>
+<div class="page messages"><div data-placeholder="messages"></div>
+<div data-bind="scope: 'messages'">
+<!-- ko if: cookieMessages && cookieMessages.length > 0 --><!-- /ko -->
+<!-- ko if: messages().messages && messages().messages.length > 0 --><!-- /ko -->
+</div>
+
+</div><div class="column main"><input name="form_key" type="hidden" value="6UDsgfy8dei14BgE">
+
+
+
+<div></div><div class="contact-us-page">
+
+<div class="row form-contact">
+<div class="col-lg-4 col-md-4">
+<div class="contact-info">
+<div class="contact-content">
+<p class="contact-description">При възникнали въпроси относно изпълнението на ваша поръчка, моля указвайте номера на поръчката.</p>
+<ul class="address-info">
+<li class="add-icon">София, 1408, ул. "Д-р Стефан Сарафов" 24,<br> блок 3, офис 1</li>
+<li class="phone-icon">
+<strong>тел.:</strong> <a title="Call" href="tel:02 421 58 51">02 421 58 51</a>
+</li>
+<li class="phone-icon">
+<strong>моб.:</strong> <a title="Call" href="tel:0893 305 100">0893 305 100</a>
+</li>
+<li class="email-icon">
+<strong>e-mail:</strong> <a title="Send Email" href="mailto:online@knigomania.bg">online@knigomania.bg</a>
+</li>
+<li class="email-icon">
+<strong>e-mail:</strong> <a title="Send Email" href="mailto:legacy@knigomania.bg">legacy@knigomania.bg</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-lg-8 col-md-8">
+        <div asp-validation-summary="All" class="text-center"></div>
+        <form method="POST" role="form" class="form" asp-controller="Contacts" asp-action="Index">
+          <div class="form-group">
+            <input type="email" class="form-control border-0 bg-smoke" asp-for="Email" placeholder="Your Email">
+            <span asp-validation-for="Email"  class="badge bg-danger"></span><br />
+          </div>
+
+          <div class="form-group">
+            <input type="number" class="form-control border-0 bg-smoke" asp-for="Phone" placeholder="Your Phone">
+            <span asp-validation-for="Phone"  class="badge bg-danger"></span><br />
+          </div>
+
+          <div class="form-group">
+            <textarea class="form-control border-0 bg-smoke" rows="6" asp-for="Question" placeholder="Your Message"></textarea>
+            <span asp-validation-for="Question"  class="badge bg-danger"></span><br />
+          </div>
+          
+          <div class="form-group">
+            <textarea class="form-control border-0 bg-smoke" rows="6" asp-for="OrderNumber" placeholder="Order Number"></textarea>
+            <span asp-validation-for="OrderNumber"  class="badge bg-danger"></span><br />
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary text-uppercase">send message</button>
+          </div>
+        </form>
+</div>
+</div>
+</div>
+</div></div></div></div></div></main>

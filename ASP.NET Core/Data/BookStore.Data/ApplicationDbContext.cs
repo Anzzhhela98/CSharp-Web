@@ -38,6 +38,8 @@
 
         public DbSet<StoreLocation> StoreLocations { get; set; }
 
+        public DbSet<UserQuestion> UserQuestions { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

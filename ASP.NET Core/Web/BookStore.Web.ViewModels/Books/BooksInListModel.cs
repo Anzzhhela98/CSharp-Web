@@ -1,4 +1,4 @@
-﻿namespace BookStore.Web.ViewModels.Book
+﻿namespace BookStore.Web.ViewModels.Books
 {
     using System;
     using System.Collections.Generic;
