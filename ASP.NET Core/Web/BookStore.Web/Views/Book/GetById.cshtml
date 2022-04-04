@@ -1,7 +1,7 @@
 ﻿@model BookStore.Web.ViewModels.Books.SingleBookViewModel
 
 @{
-    this.ViewData["Title"] = "BookById";
+    this.ViewData["Title"] = @Model.Title;
 }
 
 
@@ -24,24 +24,13 @@
 
     <a href="#" id="contentarea" tabindex="-1" style="visibility: hidden; display:none;">skip</a>
     <div class="columns col2-layout">
-
-
-
         <div class="container">
-
-
 
             <div class="row">
 
-
-
                 <div class="col-lg-9 col-md-9 col-left-sidebar">
 
-
-
                     <div class="page messages">
-
-
 
                         <div data-placeholder="messages"></div>
                         <div data-bind="scope: 'messages'">
@@ -49,16 +38,10 @@
 
                     </div><div class="column main">
 
-
-
                         <div class="product media">
-
-
 
                             <a href="#" id="gallery-prev-area" tabindex="-1" style="visibility: hidden; display:none;">skip</a>
                             <div class="action-skip-wrapper">
-
-
 
                                 <a class="action skip gallery-next-area" href="#gallery-next-area">
 
@@ -74,9 +57,9 @@
                                             </div>
                                             <div class="fotorama__stage__shaft" tabindex="0" data-gallery-role="stage-shaft" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); margin-left: 0px; width: 475px;">
                                                 <div class="fotorama__stage__frame fotorama__active fotorama_vertical_ratio fotorama__loaded fotorama__loaded--img" aria-hidden="false" data-active="true" style="left: 0px; border:none;">
-                                                    <div class="fotorama__caption" aria-hidden="true">
+                                                    @*<div class="fotorama__caption" aria-hidden="true">
                                                         <div class="fotorama__caption__wrap">@Model.Title</div>
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                                 <div class="fotorama__stage__frame fotorama_vertical_ratio fotorama__loaded fotorama__loaded--img fotorama__active" aria-hidden="false" data-active="true" style="left: 0px;" href="https://knigomania.bg/media/catalog/product/cache/02f16ac392ba7c312a70e2f3c5d752a7/t/a/taro-78-karti-s-rakovodstvo-9786197586657.jpg">
 
@@ -119,29 +102,18 @@
                                     <div data-gallery-role="fotorama__focusable-end" tabindex="-1"></div>
                                 </div>
                                 <div class="magnifier-preview magnify-hidden" data-gallery-role="magnifier" id="preview" style="display:none;"></div>
-
-                                <div class="label-product label-new">
-                                    <span class="new-product-icon">Ново</span>
-                                </div>
-
                             </div>
 
                             <div class="action-skip-wrapper">
 
-
-
                                 <a class="action skip gallery-prev-area" href="#gallery-prev-area">
-                                    z
                                 </a>
                             </div><a href="#" id="gallery-next-area" tabindex="-1" style="visibility: hidden; display:none;">skip</a>
                         </div><div class="product-info-main">
 
-
-
                             <div class="page-title-wrapper product">
                                 <h1 class="page-title">
                                     <span class="base" data-ui-id="page-title-wrapper">@Model.Title</span>
-
 
                                 </h1>
                             </div>
@@ -160,7 +132,6 @@
                                         <span id="product-price-114905" data-price-amount="22" data-price-type="finalPrice" class="price-wrapper "><span class="price">@Model.Price лв.</span></span>
                                     </span>
                                 </div>
-
 
 
                             </div>
@@ -187,9 +158,6 @@
                                                     <span>Купи</span>
                                                 </button>
                                                 <div id="instant-purchase" data-bind="scope:'instant-purchase'">
-                                                    <!-- ko template: getTemplate() -->
-                                                    <!-- ko if: showButton() --><!-- /ko -->
-                                                    <!-- /ko -->
                                                 </div>
 
                                             </div>
@@ -308,7 +276,7 @@
                             <li>
                                 <div class="service-content">
                                     <div class="policy">
-                                        <a href="https://knigomania.bg/delivery/"><em class="fa fa-truck"></em><span>Доставка за 2,90 лв. </span></a>
+                                        <a asp-controller="Order" asp-action="OrderMessage"><em class="fa fa-truck"></em><span>Доставка за 2,90 лв. </span></a>
                                         <p>Получете поръчката си бързо с най-евтината доставка за цялата страна. </p>
                                     </div>
                                 </div>
@@ -316,7 +284,7 @@
                             <li>
                                 <div class="service-content">
                                     <div class="policy">
-                                        <a href="https://knigomania.bg/nachin-na-plaschane/"><em class="fa fa-usd"></em><span>Начин на плащане</span></a>
+                                        <a asp-controller="Payment" asp-action="MethodOfPayment"><em class="fa fa-usd"></em><span>Начин на плащане</span></a>
                                         <p>Заплащането на направените поръчки може да се извършва по няколко различни начина.</p>
                                     </div>
                                 </div>
