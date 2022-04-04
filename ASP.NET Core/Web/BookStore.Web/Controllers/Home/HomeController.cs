@@ -11,7 +11,7 @@
         [HttpGet]
         public IActionResult Index()
         {
-            return this.Redirect("/Book/All");
+            return this.View();
         }
 
         public IActionResult Publishing()
