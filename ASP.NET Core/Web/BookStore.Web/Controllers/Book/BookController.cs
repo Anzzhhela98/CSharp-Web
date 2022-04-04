@@ -26,6 +26,7 @@
             this.booksService = booksService;
         }
 
+        [HttpGet]
         [Authorize]
         public IActionResult Create()
         {
@@ -47,7 +48,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View();
+                return this.View(model);
             }
 
             this.booksService.CreateBook(model);
@@ -55,6 +56,7 @@
             return this.Redirect("/");
         }
 
+        [HttpGet]
         public IActionResult Promotional(int id = 1)
         {
             const int itemsPerPage = 4;
@@ -66,10 +68,16 @@
                 BooksCount = this.booksService.GetPromotionalBooksCount(),
                 Books = this.booksService.GetAllPromotional(id, itemsPerPage),
             };
-            ;
+
+            if (books == null)
+            {
+                return this.Redirect("~/PageNotFount");
+            }
+
             return this.View(books);
         }
 
+        [HttpGet]
         public IActionResult All(int id = 1)
         {
             const int itemsPerPage = 4;
@@ -81,13 +89,24 @@
                 BooksCount = this.booksService.GetCount(),
                 Books = this.booksService.GetAll(id, itemsPerPage),
             };
-            ;
+            
+            if (books.Books.Count() == 0)
+            {
+                return this.Redirect("~/PageNotFount");
+            }
+
             return this.View(books);
         }
 
+        [HttpGet]
         public IActionResult GetById(int id)
         {
             var book = this.booksService.GetById(id);
+
+            if (book == null)
+            {
+                return this.Redirect("~/PageNotFound");
+            }
 
             return this.View(book);
         }

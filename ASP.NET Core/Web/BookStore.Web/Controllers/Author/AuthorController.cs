@@ -15,6 +15,7 @@
         }
 
         [Authorize]
+        [HttpGet]
         public IActionResult RegistarAuthor()
         {
             return this.View();

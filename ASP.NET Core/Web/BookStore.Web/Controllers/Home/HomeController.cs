@@ -8,9 +8,15 @@
 
     public class HomeController : BaseController
     {
+        [HttpGet]
         public IActionResult Index()
         {
             return this.Redirect("/Book/All");
+        }
+
+        public IActionResult Publishing()
+        {
+            return this.View();
         }
 
         public IActionResult Privacy()
@@ -23,6 +29,12 @@
         {
             return this.View(
                 new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
+        }
+
+        [Route("/NotFound")]
+        public IActionResult PageNotFound()
+        {
+            return this.View();
         }
     }
 }

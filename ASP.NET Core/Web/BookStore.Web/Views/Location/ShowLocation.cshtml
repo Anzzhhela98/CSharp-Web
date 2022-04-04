@@ -4,17 +4,6 @@
 }
 
 
-<script type="text/javascript">
-    require([
-        'jquery'
-    ], function ($) {
-        $(".header-style-1 .header-top .header-top-links .toplinks-wrapper .header.links li").not(".myaccount-link").mouseover(function () {
-            $(".header-style-1 .header-top .header-top-links .toplinks-wrapper .header.links").addClass('toplinks_hover');
-        }).mouseout(function () {
-            $(".header-style-1 .header-top .header-top-links .toplinks-wrapper .header.links").removeClass('toplinks_hover');
-        });
-    });
-</script>
 <div class="breadcrumbs">
     <div class="container">
         <ul class="items">
@@ -58,7 +47,7 @@
                                     <tr>
                                         <td><img alt="" src="@location.Image" height="99" width="149"></td>
                                         <td>
-                                            <p class="stores"><a href="https://knigomania.bg/levski"><strong>@location.Name</strong></a></p>
+                                            <p class="stores"><a asp-controller="Location" asp-action="LocationById" asp-route-id=@location.Id><strong>@location.Name</strong></a></p>
                                             <p class="stores">@location.Address</p>
                                             <p class="stores">@location.PhoneNumber</p>
                                             <p class="stores"><strong><span>@location.Email</span></strong></p>
@@ -66,9 +55,9 @@
                                                 <a asp-controller="Location"
                                                asp-action="LocationById" asp-route-id=@location.Id>виж повече</a>
                                             </p>
-@*                               <p>
-                                    <a href="/Location/ShowLocation?Id=1" class="btn btn-primary btn-block text-uppercase">Join</a>
-                              </p>*@
+                                            @*                               <p>
+                                                <a href="/Location/ShowLocation?Id=1" class="btn btn-primary btn-block text-uppercase">Join</a>
+                                                </p>*@
                                         </td>
                                     </tr>
                                 }

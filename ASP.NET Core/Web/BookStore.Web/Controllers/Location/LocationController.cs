@@ -14,6 +14,7 @@
             this.showLocationById = showLocationById;
         }
 
+        [HttpGet]
         public IActionResult ShowLocation()
         {
             var locations = this.showLocation.AllLocation();
@@ -21,9 +22,15 @@
             return this.View(locations);
         }
 
+        [HttpGet]
         public IActionResult LocationById(int id)
         {
             var location = this.showLocationById.LocationById(id);
+
+            if (location == null)
+            {
+                return this.Redirect("~/PageNotFount");
+            }
 
             return this.View(location);
         }
