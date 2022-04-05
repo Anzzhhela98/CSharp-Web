@@ -1,5 +1,6 @@
 ﻿namespace BookStore.Web
 {
+    using System.Configuration;
     using System.Reflection;
 
     using BookStore.Data;
@@ -15,6 +16,7 @@
     using BookStore.Services.Data.Location;
     using BookStore.Services.Mapping;
     using BookStore.Services.Messaging;
+    using BookStore.Web.Data;
     using BookStore.Web.ViewModels;
 
     using Microsoft.AspNetCore.Builder;
@@ -25,6 +27,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Stripe;
 
     public class Startup
     {
@@ -75,6 +78,8 @@
             services.AddTransient<IShowLocationByIdService, ShowLocationByIdService>();
             services.AddTransient<IBooksService, BooksService>();
             services.AddTransient<IContactsService, ContactsService>();
+
+            services.Configure<StripeSettings>(this.configuration.GetSection("Stipe"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,6 +94,8 @@
                 dbContext.Database.Migrate();
                 new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
             }
+
+            StripeConfiguration.SetApiKey(this.configuration.GetSection("Stripe")["Secretkey"]);
 
             if (env.IsDevelopment())
             {

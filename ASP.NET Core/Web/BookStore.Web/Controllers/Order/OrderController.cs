@@ -8,5 +8,11 @@
         {
             return this.View();
         }
+
+        [HttpGet]
+        public IActionResult Form()
+        {
+            return this.View();
+        }
     }
 }

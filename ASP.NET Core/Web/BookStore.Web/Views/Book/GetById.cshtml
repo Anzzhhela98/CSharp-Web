@@ -9,7 +9,7 @@
     <div class="container">
         <ul class="items">
             <li class="item home">
-                <a href="https://knigomania.bg/" title="Отиди на основата страница">Основна страница</a>
+                <a asp-controller="Home" asp-action="Index" title="Отиди на основата страница">Основна страница</a>
             </li>
             <li class="item product">
                 <span>@this.ViewData["Title"]</span>
@@ -57,23 +57,12 @@
                                             </div>
                                             <div class="fotorama__stage__shaft" tabindex="0" data-gallery-role="stage-shaft" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); margin-left: 0px; width: 475px;">
                                                 <div class="fotorama__stage__frame fotorama__active fotorama_vertical_ratio fotorama__loaded fotorama__loaded--img" aria-hidden="false" data-active="true" style="left: 0px; border:none;">
-                                                    @*<div class="fotorama__caption" aria-hidden="true">
-                                                        <div class="fotorama__caption__wrap">@Model.Title</div>
-                                                    </div>*@
                                                 </div>
                                                 <div class="fotorama__stage__frame fotorama_vertical_ratio fotorama__loaded fotorama__loaded--img fotorama__active" aria-hidden="false" data-active="true" style="left: 0px;" href="https://knigomania.bg/media/catalog/product/cache/02f16ac392ba7c312a70e2f3c5d752a7/t/a/taro-78-karti-s-rakovodstvo-9786197586657.jpg">
 
-
-
                                                     <img src="@Model.ImageImageUrl" class="img-thumbnail" alt="@Model.Title" aria-labelledby="labelledby1648704774902" class="fotorama__img" aria-hidden="false"><div class="fotorama__caption" aria-hidden="true">
-                                                       @* <div class="fotorama__caption__wrap" id="labelledby1648704774902">@Model.Title</div>
-                                                    </div>*@
-
-
 
                                                 </div>
-
-
 
                                             </div>
                                             <div class="fotorama__arr fotorama__arr--next fotorama__arr--disabled" tabindex="-1" role="button" aria-label="Next" data-gallery-role="arrow" disabled="disabled" style="display: none;">

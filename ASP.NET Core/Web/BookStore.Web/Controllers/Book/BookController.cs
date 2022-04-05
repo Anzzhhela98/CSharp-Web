@@ -89,7 +89,7 @@
                 BooksCount = this.booksService.GetCount(),
                 Books = this.booksService.GetAll(id, itemsPerPage),
             };
-            
+
             if (books.Books.Count() == 0)
             {
                 return this.Redirect("~/PageNotFount");
@@ -109,6 +109,20 @@
             }
 
             return this.View(book);
+        }
+
+        [HttpGet]
+        public IActionResult Buy(int id)
+        {
+            if (this.User.Identity.IsAuthenticated)
+            {
+                //var userId = this.httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                var book = this.booksService.GetBook(id);
+                ;
+                return this.View(book);
+            }
+
+            return this.Redirect("/Identity/Account/Login");
         }
     }
 }

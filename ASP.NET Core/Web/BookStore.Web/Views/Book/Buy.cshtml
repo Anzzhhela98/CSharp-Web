@@ -1,0 +1,132 @@
+﻿@model BookStore.Web.ViewModels.Books.BuyViewModel
+
+@{
+    this.ViewData["Title"] = "Shopping Cart";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" ">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <main class="page">
+        <section class="shopping-cart dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2>Shopping Cart</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+                </div>
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-8">
+                            <div class="items">
+                                <div class="product">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img class="img-fluid mx-auto d-block image" src="@Model.ImageImageUrl" />
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="info">
+                                                <div class="row">
+                                                    <div class="col-md-5 product-name">
+                                                        <div class="product-name">
+                                                            <a href="#">@Model.Title</a>
+                                                            <div class="product-info">
+                                                                <div>Author: <span class="value">@Model.Author</span></div>
+                                                                <div>Language: <span class="value">@Model.Language</span></div>
+                                                                <div>Pages: <span class="value">@Model.Pages</span></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 quantity">
+                                                        <label for="quantity">Quantity:</label>
+                                                        <input id="quantity" type="number" value="1" class="form-control quantity-input">
+                                                    </div>
+                                                    <div class="col-md-3 price">
+                                                        <span id="price">€@Model.Price</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-4">
+                            <div class="summary">
+                                <h3>Summary</h3>
+                                @*<div class="summary-item"><span class="text">Subtotal</span><span id = "subtotal"  class="price">€360</span></div>*@
+                                <div class="summary-item"><span class="text">Discount</span><span id="discount" class="price">0€</span></div>
+                                <div class="summary-item"><span class="text">Shipping</span><span id="delivery" class="price">€3.80</span></div>
+                                <div class="summary-item"><span class="text">Total</span><span id="total" class="price">€@Model.Price</span></div>
+
+                                @*@using (Html.BeginForm("Charge", "Payment", new
+                                {
+                                    Id = 2,
+                                    BookId = @Model.Id,
+                                }, FormMethod.Post))
+                                {
+                                    <form asp-controller="Payment" asp-action="Charge" method="POST">
+                                        <script src="//checkout.stripe.com/v2/checkout.js"
+                                            class="stripe-button"
+                                            data-key="pk_test_51KkssRBK8vsMODVi3tyH3xsyANw4tQQExRG52qjaqirUPxA4z2ZkRUyBPIQg5lzmbAzvDlYEoFb1S3CuxRJPgd3t00PFM7ZXrZ"
+                                            data-locate="auto"
+                                            data-description="Sample Charge"
+                                            data-amount="@(6 * 100)">
+                                        </script>
+                                    </form>
+                                }*@
+                                @*<input type="button" value="Create" onclick="location.href='@Url.Action("Charge", "Payment")'" />*@
+                                <a asp-controller="Order" asp-action="Form" asp-route-id = "@Model.Id" class="btn btn-sm btn-outline-secondary text-uppercase w-100">Order Now</a>
+                                @*<button asp-controller="Payment" asp-action="Charge" asp-route-id = "1" type="button" class="btn btn-primary btn-lg btn-block">Order Now</button>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</html>
+
+@section Scripts {
+<script type="text/javascript">
+    var qnt = document.getElementById("quantity");
+
+     qnt.addEventListener("click", function(event)
+    {
+        event.preventDefault();
+      let discount = document.getElementById("discount");
+      let quantity = document.getElementById("quantity");
+      let delivery = document.getElementById("delivery");
+      let total = document.getElementById("total");
+      let price = document.getElementById("price");
+
+      let curQuantity = Number(quantity.value);
+      let curDelivery = Number(delivery.textContent.split("€")[1]);
+      let curPrice = Number(price.textContent.split("€")[1]);
+      let curTotal = Number(total.textContent.split("€")[1]);
+
+      let finalPrice = (curQuantity * curPrice) + curDelivery;
+
+        if(Number(quantity.value) >= 10){
+            discount.textContent = (finalPrice * 0.05).toFixed(2).toString()+"€";
+            finalPrice -= finalPrice * 0.05;
+            discount.style.color = "red";
+         }else{
+              discount.textContent = "€0"
+         }
+
+       total.textContent = finalPrice.toFixed(2).toString()+"€"
+    })
+</script>
+}
