@@ -175,5 +175,11 @@
 
             return book;
         }
+
+        public BuyViewModel GetBook(int id)
+        {
+            var book = this.db.Books.Where(x => x.Id == id).To<BuyViewModel>().FirstOrDefault();
+            return book;
+        }
     }
 }

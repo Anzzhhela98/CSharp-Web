@@ -22,5 +22,7 @@
         List<BookViewModel> GetPromotionalBooks();
 
         SingleBookViewModel GetById(int id);
+
+        BuyViewModel GetBook(int id);
     }
 }
