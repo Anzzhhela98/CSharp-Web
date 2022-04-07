@@ -62,71 +62,89 @@
                         <div class="col-md-12 col-lg-4">
                             <div class="summary">
                                 <h3>Summary</h3>
-                                @*<div class="summary-item"><span class="text">Subtotal</span><span id = "subtotal"  class="price">€360</span></div>*@
+
                                 <div class="summary-item"><span class="text">Discount</span><span id="discount" class="price">0€</span></div>
                                 <div class="summary-item"><span class="text">Shipping</span><span id="delivery" class="price">€3.80</span></div>
-                                <div class="summary-item"><span class="text">Total</span><span id="total" class="price">€@Model.Price</span></div>
+                                <div class="summary-item"><span class="text">Total</span><span id="total" class="price">@Model.Price</span></div>
 
-                                @*@using (Html.BeginForm("Charge", "Payment", new
-                                {
-                                    Id = 2,
-                                    BookId = @Model.Id,
-                                }, FormMethod.Post))
-                                {
-                                    <form asp-controller="Payment" asp-action="Charge" method="POST">
-                                        <script src="//checkout.stripe.com/v2/checkout.js"
+                                <h3>Your details</h3>
+
+                                <form asp-controller="Payment" asp-action="Charge" method="POST">
+                                    <input type="text" name="FullName" value="" class="mb-2 w-100" placeholder="Enter your Name" />
+                                    <input type="text" name="City" value="" class="mb-2 w-100" placeholder="Enter your City" />
+                                    <input type="text" name="Address" value="" class="mb-2 w-100" placeholder="Enter your Address" />
+                                    <input type="text" name="Number" value="" class="mb-2 w-100" placeholder="Enter your Phone Number" />
+                                    <input id="orderCount" type="hidden" name="Count" value="" class="mb-2 w-100" placeholder="Enter Count" />
+
+                                    <script id="sPrice" src="//checkout.stripe.com/v2/checkout.js"
                                             class="stripe-button"
                                             data-key="pk_test_51KkssRBK8vsMODVi3tyH3xsyANw4tQQExRG52qjaqirUPxA4z2ZkRUyBPIQg5lzmbAzvDlYEoFb1S3CuxRJPgd3t00PFM7ZXrZ"
                                             data-locate="auto"
                                             data-description="Sample Charge"
-                                            data-amount="@(6 * 100)">
-                                        </script>
-                                    </form>
-                                }*@
-                                @*<input type="button" value="Create" onclick="location.href='@Url.Action("Charge", "Payment")'" />*@
-                                <a asp-controller="Order" asp-action="Form" asp-route-id = "@Model.Id" class="btn btn-sm btn-outline-secondary text-uppercase w-100">Order Now</a>
-                                @*<button asp-controller="Payment" asp-action="Charge" asp-route-id = "1" type="button" class="btn btn-primary btn-lg btn-block">Order Now</button>*@
+                                            data-amount="">
+                                    </script>
+
+
+
+                                    <input id="totalPriceTransfer" type="hidden" name="TotalPriceTransfer" value="" />
+                                </form>
+
                             </div>
+                        </div>
+                        <div class="col-md-12 col-lg-4">
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
     </main>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
 </html>
 
 @section Scripts {
 <script type="text/javascript">
-    var qnt = document.getElementById("quantity");
+     var qnt = document.getElementById("quantity");
+       let total = document.getElementById("total");
 
-     qnt.addEventListener("click", function(event)
-    {
-        event.preventDefault();
-      let discount = document.getElementById("discount");
-      let quantity = document.getElementById("quantity");
-      let delivery = document.getElementById("delivery");
-      let total = document.getElementById("total");
-      let price = document.getElementById("price");
+      //(Number(total.textContent) + 3.80).toFixed(2)
 
-      let curQuantity = Number(quantity.value);
-      let curDelivery = Number(delivery.textContent.split("€")[1]);
-      let curPrice = Number(price.textContent.split("€")[1]);
-      let curTotal = Number(total.textContent.split("€")[1]);
+       total.textContent = (Number(total.textContent) + 3.80).toFixed(2)
 
-      let finalPrice = (curQuantity * curPrice) + curDelivery;
+      qnt.addEventListener("click", function(event)
+     {
+         event.preventDefault();
+       let discount = document.getElementById("discount");
+       let quantity = document.getElementById("quantity");
+       let delivery = document.getElementById("delivery");
+       let total = document.getElementById("total");
+       let price = document.getElementById("price");
 
-        if(Number(quantity.value) >= 10){
-            discount.textContent = (finalPrice * 0.05).toFixed(2).toString()+"€";
-            finalPrice -= finalPrice * 0.05;
-            discount.style.color = "red";
-         }else{
-              discount.textContent = "€0"
-         }
+       let curQuantity = Number(quantity.value);
+       let curDelivery = Number(delivery.textContent.split("€")[1]);
+       let curPrice = Number(price.textContent.split("€")[1]);
+       let curTotal = Number(total.textContent.split("€")[1]);
 
-       total.textContent = finalPrice.toFixed(2).toString()+"€"
-    })
+       let finalPrice = (curQuantity * curPrice) + curDelivery;
+
+         if(Number(quantity.value) >= 10){
+             discount.textContent = (finalPrice * 0.05).toFixed(2).toString()+"€";
+             finalPrice -= finalPrice * 0.05;
+             discount.style.color = "red";
+          }else{
+               discount.textContent = "€0"
+          }
+
+        total.textContent = finalPrice.toFixed(2).toString()+"€"
+          $('#sPrice').attr('data-amount',finalPrice.toFixed(2) * 100);
+
+    document.getElementById("totalPriceTransfer").value = finalPrice.toFixed(2) * 100;
+    document.getElementById("orderCount").value = curQuantity;
+     })
 </script>
 }
+
+
+
+
