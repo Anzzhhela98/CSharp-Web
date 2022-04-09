@@ -69,12 +69,12 @@
 
                                 <h3>Your details</h3>
 
-                                <form asp-controller="Payment" asp-action="Charge" method="POST">
+                                <form asp-controller="Payment" asp-action="Charge" asp-route-id="@Model.Id"   method="POST">
                                     <input type="text" name="FullName" value="" class="mb-2 w-100" placeholder="Enter your Name" />
                                     <input type="text" name="City" value="" class="mb-2 w-100" placeholder="Enter your City" />
                                     <input type="text" name="Address" value="" class="mb-2 w-100" placeholder="Enter your Address" />
                                     <input type="text" name="Number" value="" class="mb-2 w-100" placeholder="Enter your Phone Number" />
-                                    <input id="orderCount" type="hidden" name="Count" value="" class="mb-2 w-100" placeholder="Enter Count" />
+                                    <input id="orderCount" type="hidden" name="Count" value="1" class="mb-2 w-100" placeholder="Enter Count" />
 
                                     <script id="sPrice" src="//checkout.stripe.com/v2/checkout.js"
                                             class="stripe-button"

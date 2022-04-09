@@ -14,6 +14,7 @@
     using BookStore.Services.Data.Book;
     using BookStore.Services.Data.Contact;
     using BookStore.Services.Data.Location;
+    using BookStore.Services.Data.Payment;
     using BookStore.Services.Mapping;
     using BookStore.Services.Messaging;
     using BookStore.Web.Data;
@@ -78,6 +79,7 @@
             services.AddTransient<IShowLocationByIdService, ShowLocationByIdService>();
             services.AddTransient<IBooksService, BooksService>();
             services.AddTransient<IContactsService, ContactsService>();
+            services.AddTransient<IPaymentService, PaymentService>();
 
             services.Configure<StripeSettings>(this.configuration.GetSection("Stipe"));
         }

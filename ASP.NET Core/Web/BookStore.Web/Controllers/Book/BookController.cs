@@ -26,35 +26,35 @@
             this.booksService = booksService;
         }
 
-        [HttpGet]
-        [Authorize]
-        public IActionResult Create()
-        {
-            var userId = this.httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        //[HttpGet]
+        //[Authorize]
+        //public IActionResult Create()
+        //{
+        //    var userId = this.httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            var isAuthorizedToCreateBook = this.authorizedToCreateBook.IsAuthorizedToCreateBook(userId);
+        //    var isAuthorizedToCreateBook = this.authorizedToCreateBook.IsAuthorizedToCreateBook(userId);
 
-            if (!isAuthorizedToCreateBook)
-            {
-                return this.Redirect("/Author/RegistarAuthor");
-            }
+        //    if (!isAuthorizedToCreateBook)
+        //    {
+        //        return this.Redirect("/Author/RegistarAuthor");
+        //    }
 
-            return this.View();
-        }
+        //    return this.View();
+        //}
 
-        [HttpPost]
-        [Authorize]
-        public IActionResult Create(CreateBookModel model)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(model);
-            }
+        //[HttpPost]
+        //[Authorize]
+        //public IActionResult Create(CreateBookModel model)
+        //{
+        //    if (!this.ModelState.IsValid)
+        //    {
+        //        return this.View(model);
+        //    }
 
-            this.booksService.CreateBook(model);
+        //    this.booksService.CreateBook(model);
 
-            return this.Redirect("/");
-        }
+        //    return this.Redirect("/");
+        //}
 
         [HttpGet]
         public IActionResult Promotional(int id = 1)
