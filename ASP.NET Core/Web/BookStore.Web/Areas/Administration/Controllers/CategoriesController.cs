@@ -17,8 +17,6 @@
     {
         private readonly IDeletableEntityRepository<Book> bookRepository;
         private readonly IDeletableEntityRepository<Category> categoryRepository;
-        private readonly IDeletableEntityRepository<Image> imageRepository;
-        private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
 
         public CategoriesController(IDeletableEntityRepository<Category> categoryRepository, IDeletableEntityRepository<Book> bookRepository)
         {
@@ -116,7 +114,6 @@
                     {
                         book.CategoryId = 29;
                     }
-                    ;
 
                     await this.bookRepository.SaveChangesAsync();
                 }
