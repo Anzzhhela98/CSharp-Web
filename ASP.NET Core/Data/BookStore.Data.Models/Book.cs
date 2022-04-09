@@ -27,7 +27,7 @@
         public decimal Price { get; set; }
 
         [Required]
-        [MaxLength(3000)]
+
         public int Pages { get; set; }
 
         [Required]
@@ -49,7 +49,6 @@
         public string UniqueIdBook { get; set; }
 
         [Required]
-        [MinLength(18)]
         [MaxLength(18)]
         public string ISBN { get; set; }
 

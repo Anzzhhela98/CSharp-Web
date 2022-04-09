@@ -23,6 +23,6 @@
 
         SingleBookViewModel GetById(int id);
 
-        BuyViewModel GetBook(int id);
+        BuyViewModel Buy(int id);
     }
 }

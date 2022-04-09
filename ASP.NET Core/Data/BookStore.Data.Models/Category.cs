@@ -3,11 +3,10 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class Category
-    {
-        [Required]
-        public int Id { get; set; }
+    using BookStore.Data.Common.Models;
 
+    public class Category : BaseDeletableModel<int>
+    {
         [Required]
         public string Type { get; set; }
 

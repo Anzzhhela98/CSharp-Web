@@ -15,6 +15,7 @@
                 return;
             }
 
+            await dbContext.Categories.AddAsync(new Category { Type = "BookStore" });
             await dbContext.Categories.AddAsync(new Category { Type = "Drama" });
             await dbContext.Categories.AddAsync(new Category { Type = "Journals" });
             await dbContext.Categories.AddAsync(new Category { Type = "Biographies" });
@@ -35,6 +36,7 @@
             await dbContext.Categories.AddAsync(new Category { Type = "Travel" });
             await dbContext.Categories.AddAsync(new Category { Type = "Children's" });
             await dbContext.Categories.AddAsync(new Category { Type = "World classics" });
+            await dbContext.Categories.AddAsync(new Category { Type = "History" });
 
             await dbContext.SaveChangesAsync();
         }

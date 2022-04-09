@@ -90,6 +90,7 @@
         public IEnumerable<BookInListModel> GetAll(int page, int itemsPerPage = 4)
         {
             var book = this.db.Books
+                .Where(x => x.IsDeleted == false)
                   .Select(x => new BookInListModel
                   {
                       Price = x.Price.ToString(),
@@ -129,6 +130,7 @@
         public List<BookViewModel> GetAll()
         {
             var book = this.db.Books
+                .Where(x => x.IsDeleted == false)
                     .Select(x => new BookViewModel
                     {
                         Price = x.Price.ToString(),
@@ -137,6 +139,8 @@
                         ImageUrl = this.db.Images.Where(i => i.Id == x.ImageId).Select(x => x.ImageUrl).FirstOrDefault(),
                         Id = x.Id,
                     }).ToList();
+
+
 
             return book;
         }
@@ -176,7 +180,7 @@
             return book;
         }
 
-        public BuyViewModel GetBook(int id)
+        public BuyViewModel Buy(int id)
         {
             var book = this.db.Books.Where(x => x.Id == id).To<BuyViewModel>().FirstOrDefault();
             return book;

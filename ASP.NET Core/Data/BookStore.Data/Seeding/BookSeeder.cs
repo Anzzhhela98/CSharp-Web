@@ -12,12 +12,12 @@
         {
             if (dbContext.Books.Any())
             {
-                //foreach (var id in dbContext.Books.Select(e => e.Id))
-                //{
-                //    var entity = new  Book{ Id = id };
-                //    dbContext.Books.Attach(entity);
-                //    dbContext.Books.Remove(entity);
-                //};
+                ////foreach (var id in dbContext.Books.Select(e => e.Id))
+                ////{
+                ////    var entity = new Book { Id = id };
+                ////    dbContext.Books.Attach(entity);
+                ////    dbContext.Books.Remove(entity);
+                ////};
                 return;
             }
 
@@ -77,7 +77,7 @@
                 ISBN = "9786191952458",
                 ImageId = "9a706910-5f62-4fc5-b954-32fd0c3c8bd9",
                 IsOnPromotional = false,
-                CategoryId = 8,
+                CategoryId = 32,
                 CreatedByUserId = "1ae93590-714e-488f-aef6-622473947f4b",
             });
 
