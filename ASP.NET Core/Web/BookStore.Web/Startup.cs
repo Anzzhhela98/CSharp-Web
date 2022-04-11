@@ -14,6 +14,7 @@
     using BookStore.Services.Data.Book;
     using BookStore.Services.Data.Contact;
     using BookStore.Services.Data.Location;
+    using BookStore.Services.Data.Order;
     using BookStore.Services.Data.Payment;
     using BookStore.Services.Mapping;
     using BookStore.Services.Messaging;
@@ -29,6 +30,8 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Stripe;
+
+    using OrdersService = Services.Data.Order.OrdersService;
 
     public class Startup
     {
@@ -80,6 +83,7 @@
             services.AddTransient<IBooksService, BooksService>();
             services.AddTransient<IContactsService, ContactsService>();
             services.AddTransient<IPaymentService, PaymentService>();
+            services.AddTransient<IOrdersService, OrdersService>();
 
             services.Configure<StripeSettings>(this.configuration.GetSection("Stipe"));
         }

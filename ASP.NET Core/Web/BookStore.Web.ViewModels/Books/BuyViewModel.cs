@@ -18,5 +18,7 @@
         public int Pages { get; set; }
 
         public string Language { get; set; }
+
+        public int Quantity { get; set; }
     }
 }

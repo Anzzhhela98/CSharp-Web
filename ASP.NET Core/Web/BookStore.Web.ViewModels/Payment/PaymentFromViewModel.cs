@@ -21,4 +21,5 @@
         public string StripeEmail { get; set; }
 
     }
+
 }

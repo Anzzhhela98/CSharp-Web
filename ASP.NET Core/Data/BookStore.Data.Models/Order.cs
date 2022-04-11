@@ -5,9 +5,11 @@
 
     using BookStore.Data.Common.Models;
 
-    public class Order : IAuditInfo
+    public class Order
     {
         public int Id { get; init; }
+
+        public string OrderNumber { get; set; }
 
         [Required]
         [Range(1, 100)]
@@ -27,7 +29,7 @@
         [Required]
         [MinLength(10)]
         [MaxLength(10)]
-        public string Numer { get; set; }
+        public string Number { get; set; }
 
         [Required]
         public string FullName { get; set; }
@@ -54,6 +56,6 @@
         [Required]
         public DateTime CreatedOn { get; set; }
 
-        public DateTime? ModifiedOn { get; set; }
+        public DateTime ModifiedOn { get; set; }
     }
 }

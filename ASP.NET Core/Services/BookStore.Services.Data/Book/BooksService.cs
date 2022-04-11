@@ -185,5 +185,20 @@
             var book = this.db.Books.Where(x => x.Id == id).To<BuyViewModel>().FirstOrDefault();
             return book;
         }
+
+        public bool EnoughQuantity(int bookId, int orderQuantity)
+        {
+            var book = this.db.Books.FirstOrDefault(x => x.Id == bookId);
+
+            if (book.Quantity >= orderQuantity)
+            {
+                book.Quantity -= orderQuantity;
+                this.db.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
     }
 }

@@ -24,5 +24,7 @@
         SingleBookViewModel GetById(int id);
 
         BuyViewModel Buy(int id);
+
+        public bool EnoughQuantity(int bookId, int orderQuantity);
     }
 }

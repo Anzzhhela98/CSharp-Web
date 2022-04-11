@@ -46,7 +46,7 @@
                                                     </div>
                                                     <div class="col-md-4 quantity">
                                                         <label for="quantity">Quantity:</label>
-                                                        <input id="quantity" type="number" value="1" class="form-control quantity-input">
+                                                        <input id="quantity" type="number" value="1" min = "1" max="@Model.Quantity" class="form-control quantity-input">
                                                     </div>
                                                     <div class="col-md-3 price">
                                                         <span id="price">€@Model.Price</span>
@@ -69,7 +69,7 @@
 
                                 <h3>Your details</h3>
 
-                                <form asp-controller="Payment" asp-action="Charge" asp-route-id="@Model.Id"   method="POST">
+                                <form asp-controller="Payment" asp-action="Charge" asp-route-id="@Model.Id" method="POST">
                                     <input type="text" name="FullName" value="" class="mb-2 w-100" placeholder="Enter your Name" />
                                     <input type="text" name="City" value="" class="mb-2 w-100" placeholder="Enter your City" />
                                     <input type="text" name="Address" value="" class="mb-2 w-100" placeholder="Enter your Address" />
@@ -100,15 +100,13 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    
+
 </html>
 
 @section Scripts {
 <script type="text/javascript">
      var qnt = document.getElementById("quantity");
        let total = document.getElementById("total");
-
-      //(Number(total.textContent) + 3.80).toFixed(2)
 
        total.textContent = (Number(total.textContent) + 3.80).toFixed(2)
 
