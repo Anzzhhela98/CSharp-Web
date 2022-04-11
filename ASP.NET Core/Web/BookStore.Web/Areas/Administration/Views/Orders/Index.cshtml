@@ -55,23 +55,22 @@
                                             <div>
                                                 @if (item.Status == "shipped")
                                                 {
-                                                    <div class="progress" style="height: 6px">
-                                                        <div class="progress-bar bg-success" style="width: 50%"></div>
+                                                    <div class="progress" style="height: 18px">
+                                                        <div class="progress-bar bg-success" style="width: 100%">shipped</div>
                                                     </div>
                                                 }
                                                 @if (item.Status == "rejected")
                                                 {
-                                                    <div class="progress" style="height: 6px">
+                                                    <div class="progress" style="height: 15px">
                                                         <div class="progress-bar bg-danger" style="width: 50%"></div>
                                                     </div>
                                                 }
                                                 @if (item.Status == "processing")
                                                 {
-                                                    <div class="progress" style="height: 6px">
+                                                    <div class="progress" style="height: 15px">
                                                         <div class="progress-bar bg-primary" style="width: 50%"></div>
                                                     </div>
                                                 }
-                                                status
                                             </div>
                                         </td>
                                         <td><i class="fa fa-circle-o text-success  mr-2"></i> @item.StatusPayment</td>
@@ -79,7 +78,7 @@
                                             <span>@item.CreatedOn</span>
                                         </td>
                                         <td>
-                                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                            <a asp-action="Edit" asp-route-id="@item.Id">Lock</a> |
                                             <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                                             <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                                         </td>

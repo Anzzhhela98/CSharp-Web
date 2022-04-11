@@ -26,6 +26,7 @@
                 model.TotalPriceTransfer = Convert.ToInt64(price* 100);
             }
 
+            var paymentIntents = new PaymentIntentService();
             var customers = new CustomerService();
             var charges = new ChargeService();
 
