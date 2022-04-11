@@ -34,7 +34,7 @@ We'll examine the **`ASP.NET Core`** technology platform, its components and arc
 The course also includes more complex topics, such as working with **Users**, **Roles** and **Sessions**, using **AJAX**, **caching**, **web application security**, **web sockets**, working with **MVC Controls** and several hands-on labs and workshops to build complete, full featured **`ASP.NET Core`** web applications.
 
 The course ends with a project defense of a web application built with **`ASP.NET Core`** which can be found in this repository -> ...
-
+(https://github.com/Anzzhhela98/CSharp-Web/tree/main/ASP.NET%20Core/)
 ---
 
 **Acquired Skills** :
