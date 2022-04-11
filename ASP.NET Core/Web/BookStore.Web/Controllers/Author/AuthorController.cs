@@ -16,10 +16,7 @@
 
         [Authorize]
         [HttpGet]
-        public IActionResult RegistarAuthor()
-        {
-            return this.View();
-        }
+        public IActionResult RegistarAuthor() => this.View();
 
         [HttpPost]
         [Authorize]

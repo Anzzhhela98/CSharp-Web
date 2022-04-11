@@ -5,10 +5,8 @@
 
     using BookStore.Data.Common.Models;
 
-    public class Order
+    public class Order : BaseDeletableModel<int>
     {
-        public int Id { get; init; }
-
         public string OrderNumber { get; set; }
 
         [Required]

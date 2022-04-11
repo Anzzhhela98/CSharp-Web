@@ -26,7 +26,7 @@
             var order = new Order
             {
                 StatusPayment = statusPayment,
-                Status = "procesing",
+                Status = "processing",
                 CreatedOn = DateTime.Now,
                 FullName = model.FullName,
                 Email = model.StripeEmail,

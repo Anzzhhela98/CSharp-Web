@@ -1,113 +1,94 @@
 ﻿@model IEnumerable<BookStore.Data.Models.Order>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Orders";
 }
 
-<h1>Index</h1>
+<h1>Orders</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.OrderNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Count)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Number)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StatusPayment)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedByUser)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Book)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedOn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModifiedOn)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Count)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StatusPayment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedByUser.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Book.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModifiedOn)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="row row-bordered table-hover table-striped">
+    <div class="col-lg-15">
+        <div class="card">
+                <div class="active-member">
+                    <div class="table-responsive">
+                        <table class="table table-xs mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Order</th>
+                                    <th>Customers</th>
+                                    <th>Product</th>
+                                    <th>Country</th>
+                                    <th>Phone</th>
+                                    <th>Price</th>
+                                    <th>Count</th>
+                                    <th>Status</th>
+                                    <th>Payment Method</th>
+                                    <th>CreatedOn</th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <span>@item.OrderNumber</span>
+                                        </td>
+                                        <td>@item.FullName @item.Email</td>
+                                        <td>@item.Book.Title</td>
+                                        <td>
+                                            <span>Bulgaria</span>
+                                        </td>
+                                        <td>
+                                            <span>@item.Number</span>
+                                        </td>
+                                        <td>
+                                            <span>@item.Price</span>
+                                        </td>
+                                        <td>
+                                            <span>@item.Count</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                @if (item.Status == "shipped")
+                                                {
+                                                    <div class="progress" style="height: 6px">
+                                                        <div class="progress-bar bg-success" style="width: 50%"></div>
+                                                    </div>
+                                                }
+                                                @if (item.Status == "rejected")
+                                                {
+                                                    <div class="progress" style="height: 6px">
+                                                        <div class="progress-bar bg-danger" style="width: 50%"></div>
+                                                    </div>
+                                                }
+                                                @if (item.Status == "processing")
+                                                {
+                                                    <div class="progress" style="height: 6px">
+                                                        <div class="progress-bar bg-primary" style="width: 50%"></div>
+                                                    </div>
+                                                }
+                                                status
+                                            </div>
+                                        </td>
+                                        <td><i class="fa fa-circle-o text-success  mr-2"></i> @item.StatusPayment</td>
+                                        <td>
+                                            <span>@item.CreatedOn</span>
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
