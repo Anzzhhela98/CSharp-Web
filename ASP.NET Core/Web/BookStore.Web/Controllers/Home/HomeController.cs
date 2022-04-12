@@ -2,16 +2,28 @@
 {
     using System.Diagnostics;
 
+    using BookStore.Services.Data.Book;
     using BookStore.Web.ViewModels;
 
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
     {
+        private readonly IBooksService booksService;
+
+        public HomeController(IBooksService booksService)
+        {
+            this.booksService = booksService;
+        }
+
         [HttpGet]
         public IActionResult Index()
         {
-            return this.View();
+            var randomBooks = this.booksService.GetRandomBook();
+
+            return this.View(randomBooks);
+
+
         }
 
         public IActionResult Publishing()

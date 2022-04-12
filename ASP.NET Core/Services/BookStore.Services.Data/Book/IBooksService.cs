@@ -21,6 +21,8 @@
 
         List<BookViewModel> GetPromotionalBooks();
 
+        List<IndexPageBookViewModel> GetRandomBook();
+
         SingleBookViewModel GetById(int id);
 
         BuyViewModel Buy(int id);

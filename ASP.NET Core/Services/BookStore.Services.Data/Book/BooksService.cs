@@ -1,5 +1,6 @@
 ﻿namespace BookStore.Services.Data.Book
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -182,8 +183,11 @@
 
         public BuyViewModel Buy(int id)
         {
-            var book = this.db.Books.Where(x => x.Id == id).To<BuyViewModel>().FirstOrDefault();
-            return book;
+            return this.db.Books
+                .Where(x => x.Id == id)
+                .To<BuyViewModel>()
+                .FirstOrDefault();
+
         }
 
         public bool EnoughQuantity(int bookId, int orderQuantity)
@@ -199,6 +203,15 @@
             }
 
             return false;
+        }
+
+        public List<IndexPageBookViewModel> GetRandomBook()
+        {
+            return this.db.Books
+                .OrderBy(x => Guid.NewGuid())
+                .To<IndexPageBookViewModel>()
+                .Take(8)
+                .ToList();
         }
     }
 }
