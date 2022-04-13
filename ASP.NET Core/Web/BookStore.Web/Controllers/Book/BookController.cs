@@ -114,11 +114,16 @@
         [HttpGet]
         public IActionResult Buy(int id)
         {
+            ;
+            if (id == 0)
+            {
+                return this.View("EmptyCart");
+            }
+
             if (this.User.Identity.IsAuthenticated)
             {
                 //var userId = this.httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 var book = this.booksService.Buy(id);
-                ;
                 return this.View(book);
             }
 

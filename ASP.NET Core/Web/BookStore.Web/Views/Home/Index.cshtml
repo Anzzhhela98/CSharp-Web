@@ -8,10 +8,9 @@
 
 <style>
 
-    #carouselExampleIndicators carousel-inner {
-        background: blue;
-    }
 </style>
+
+
 
 <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -89,7 +88,7 @@
                             <p class="card-text">
                                 @item.Description.Substring(0, 40) ...
                             </p>
-                            <span class="price" style="font-weight: bold; color:#80391e;">€@item.Price</span>
+                            <div><span class="price" style="font-weight: bold; color:#80391e;">€@item.Price</span></div>
                             <a asp-controller="Book" asp-action="Buy" asp-route-id="@item.Id" class="btn btn-dark" role="button">Add to Card</a>
                         </div>
                     </div>

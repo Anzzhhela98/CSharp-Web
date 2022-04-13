@@ -29,6 +29,11 @@
         [Authorize]
         public IActionResult Charge(PaymentFromViewModel model)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
             if (!this.booksService.EnoughQuantity(model.Id, model.Count))
             {
                 return this.Redirect("~/Payment/ErrorMessage");

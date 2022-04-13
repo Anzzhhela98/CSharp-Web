@@ -37,6 +37,11 @@
         [Authorize]
         public IActionResult Index(ContactsViewModel model)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
             return this.View();
         }
 

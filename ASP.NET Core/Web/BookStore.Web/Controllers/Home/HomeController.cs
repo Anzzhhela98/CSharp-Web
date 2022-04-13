@@ -22,8 +22,6 @@
             var randomBooks = this.booksService.GetRandomBook();
 
             return this.View(randomBooks);
-
-
         }
 
         public IActionResult Publishing()
