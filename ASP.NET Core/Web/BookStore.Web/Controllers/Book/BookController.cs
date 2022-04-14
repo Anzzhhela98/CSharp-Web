@@ -80,7 +80,8 @@
         [HttpGet]
         public IActionResult All(int id = 1)
         {
-            const int itemsPerPage = 4;
+            ;
+            const int itemsPerPage = 6;
 
             var books = new BooksInListModel
             {
@@ -94,6 +95,7 @@
             {
                 return this.Redirect("~/PageNotFount");
             }
+            ;
 
             return this.View(books);
         }
