@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+
     using BookStore.Data;
     using BookStore.Web.ViewModels.Contact;
 
@@ -21,7 +22,7 @@
                 .Where(x => x.Id == id)
                 .Select(x => new RegisteredUserViewModel
                 {
-                    Email = x.UserName,
+                    Email = x.Email,
                 })
                 .FirstOrDefault();
 

@@ -1,9 +1,13 @@
 ﻿namespace BookStore.Services.Data.Location
 {
+    using System.Collections.Generic;
+
     using BookStore.Web.ViewModels.Location;
 
-    public interface IShowLocationByIdService
+    public interface ILocationService
     {
+        List<LocationViewModel> AllLocation();
+
         LocationByIdViewModel LocationById(int id);
     }
 }

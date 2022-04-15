@@ -12,17 +12,14 @@
     public class OrdersService : IOrdersService
     {
         private readonly ApplicationDbContext db;
-        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public OrdersService(ApplicationDbContext db, IHttpContextAccessor httpContextAccessor)
+        public OrdersService(ApplicationDbContext db )
         {
             this.db = db;
-            this.httpContextAccessor = httpContextAccessor;
         }
 
-        public void SetOrder(PaymentFromViewModel model, string statusPayment)
+        public void SetOrder(PaymentFromViewModel model, string statusPayment, string userId)
         {
-            var userId = this.httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var order = new Order
             {
                 StatusPayment = statusPayment,

@@ -1,17 +1,23 @@
 ﻿namespace BookStore.Web.Controllers
 {
-    using BookStore.Services.Data.Author;
+    using System.Security.Claims;
+
+    using BookStore.Services.Data.Book;
     using BookStore.Web.ViewModels.Author;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
     public class AuthorController : Controller
     {
-        private readonly IAddAuthorInSystemService addAuthorInSystemService;
+        private readonly IAuthorService authorService;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public AuthorController(IAddAuthorInSystemService addAuthorInSystemService)
+
+        public AuthorController(IAuthorService authorService, IHttpContextAccessor httpContextAccessor)
         {
-            this.addAuthorInSystemService = addAuthorInSystemService;
+            this.authorService = authorService;
+            this.httpContextAccessor = httpContextAccessor;
         }
 
         [Authorize]
@@ -22,12 +28,14 @@
         [Authorize]
         public IActionResult RegistarAuthor(RegistarAuthorModel model)
         {
+            var userId = this.httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
             if (!this.ModelState.IsValid)
             {
                 return this.View();
             }
 
-            this.addAuthorInSystemService.AddAuthorInSystem(model);
+            this.authorService.AddAuthorInSystem(model, userId);
 
             return this.Redirect("/Book/Create");
         }

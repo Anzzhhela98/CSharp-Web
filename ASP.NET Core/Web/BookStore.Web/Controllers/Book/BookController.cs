@@ -13,12 +13,12 @@
 
     public class BookController : Controller
     {
-        private readonly IAuthorizedToCreateBookService authorizedToCreateBook;
+        private readonly IAuthorService authorizedToCreateBook;
         private readonly IBooksService booksService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IHttpContextAccessor httpContextAccessor;
 
-        public BookController(UserManager<ApplicationUser> userManager, IAuthorizedToCreateBookService authorizedToCreateBook, IHttpContextAccessor httpContextAccessor, IBooksService booksService)
+        public BookController(UserManager<ApplicationUser> userManager, IAuthorService authorizedToCreateBook, IHttpContextAccessor httpContextAccessor, IBooksService booksService)
         {
             this.userManager = userManager;
             this.authorizedToCreateBook = authorizedToCreateBook;
@@ -80,7 +80,6 @@
         [HttpGet]
         public IActionResult All(int id = 1)
         {
-            ;
             const int itemsPerPage = 6;
 
             var books = new BooksInListModel
@@ -95,7 +94,6 @@
             {
                 return this.Redirect("~/PageNotFount");
             }
-            ;
 
             return this.View(books);
         }

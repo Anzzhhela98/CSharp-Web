@@ -15,7 +15,7 @@
 
         int GetPromotionalBooksCount();
 
-        public void CreateBook(CreateBookModel model);
+        //public void CreateBook(CreateBookModel model);
 
         List<BookViewModel> GetAll();
 

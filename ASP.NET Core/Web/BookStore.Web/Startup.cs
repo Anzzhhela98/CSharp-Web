@@ -76,10 +76,8 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
-            services.AddTransient<IAuthorizedToCreateBookService, AuthorizedToCreateBookService>();
-            services.AddTransient<IAddAuthorInSystemService, AddAuthorInSystemService>();
-            services.AddTransient<IShowLocationService, ShowLocationService>();
-            services.AddTransient<IShowLocationByIdService, ShowLocationByIdService>();
+            services.AddTransient<IAuthorService, AuthorService>();
+            services.AddTransient<ILocationService, LocationService>();
             services.AddTransient<IBooksService, BooksService>();
             services.AddTransient<IContactsService, ContactsService>();
             services.AddTransient<IPaymentService, PaymentService>();

@@ -1,27 +1,25 @@
 ﻿namespace BookStore.Services.Data.Author
 {
+    using System.Linq;
     using System.Security.Claims;
 
     using BookStore.Data;
     using BookStore.Data.Models;
+    using BookStore.Services.Data.Book;
     using BookStore.Web.ViewModels.Author;
     using Microsoft.AspNetCore.Http;
 
-    public class AddAuthorInSystemService : IAddAuthorInSystemService
+    public class AuthorService : IAuthorService
     {
         private readonly ApplicationDbContext db;
-        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public AddAuthorInSystemService(ApplicationDbContext db, IHttpContextAccessor httpContextAccessor)
+        public AuthorService(ApplicationDbContext db)
         {
             this.db = db;
-            this.httpContextAccessor = httpContextAccessor;
         }
 
-        public void AddAuthorInSystem(RegistarAuthorModel model)
+        public void AddAuthorInSystem(RegistarAuthorModel model, string userId)
         {
-            var userId = this.httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
             var author = new SystemAuthor
             {
                 Name = model.Name,
@@ -31,6 +29,11 @@
 
             this.db.SystemAuthors.Add(author);
             this.db.SaveChanges();
+        }
+
+        public bool IsAuthorizedToCreateBook(string userId)
+        {
+            return this.db.SystemAuthors.Where(x => x.CreatedByUserId == userId && x.Registrant != null).Any();
         }
     }
 }

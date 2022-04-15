@@ -4,29 +4,26 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Security.Claims;
 
     using BookStore.Data;
     using BookStore.Data.Models;
     using BookStore.Services.Mapping;
     using BookStore.Web.ViewModels.Books;
     using BookStore.Web.ViewModels.Home;
-    using Microsoft.AspNetCore.Http;
 
     public class BooksService : IBooksService
     {
         private readonly ApplicationDbContext db;
-        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public BooksService(ApplicationDbContext db, IHttpContextAccessor httpContextAccessor)
+        public BooksService(ApplicationDbContext db)
         {
             this.db = db;
-            this.httpContextAccessor = httpContextAccessor;
         }
 
         public void CreateBook(CreateBookModel model)
         {
-            var userId = this.httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            //var userId = this.httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value 
+            //   == null ? "1ae93590-714e-488f-aef6-622473947f4b" : this.httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             var categoryId = this.db.Categories
                 .Where(c => c.Type == model.Type)
@@ -37,7 +34,7 @@
             {
                 ImageUrl = model.ImageURl,
                 Extension = Path.GetExtension(model.ImageURl),
-                CreatedByUserId = userId,
+                CreatedByUserId = "1ae93590-714e-488f-aef6-622473947f4b",
             };
 
             this.db.Images.Add(image);
@@ -73,7 +70,7 @@
                 ISBN = model.ISBN,
                 IsOnPromotional = false,
                 ImageId = image.Id,
-                CreatedByUserId = userId,
+                CreatedByUserId = "1ae93590-714e-488f-aef6-622473947f4b",
                 CategoryId = categoryId,
             };
 
@@ -123,8 +120,6 @@
                   .Take(itemsPerPage)
                   .ToList();
 
-            ;
-
             return book;
         }
 
@@ -141,14 +136,31 @@
                         Id = x.Id,
                     }).ToList();
 
-
-
             return book;
         }
 
         public int GetCount()
         {
             return this.db.Books.Count();
+        }
+
+        public bool EnoughQuantity(int bookId, int orderQuantity)
+        {
+            var book = this.db.Books.FirstOrDefault(x => x.Id == bookId);
+            if (orderQuantity <= 0)
+            {
+                return false;
+            }
+
+            if (book.Quantity >= orderQuantity)
+            {
+                book.Quantity -= orderQuantity;
+                this.db.SaveChanges();
+
+                return true;
+            }
+
+            return false;
         }
 
         public int GetPromotionalBooksCount()
@@ -176,9 +188,10 @@
 
         public SingleBookViewModel GetById(int id)
         {
-            var book = this.db.Books.Where(x => x.Id == id).To<SingleBookViewModel>().FirstOrDefault();
-
-            return book;
+            return this.db.Books
+                .Where(x => x.Id == id)
+                .To<SingleBookViewModel>()
+                .FirstOrDefault();
         }
 
         public BuyViewModel Buy(int id)
@@ -187,22 +200,6 @@
                 .Where(x => x.Id == id)
                 .To<BuyViewModel>()
                 .FirstOrDefault();
-
-        }
-
-        public bool EnoughQuantity(int bookId, int orderQuantity)
-        {
-            var book = this.db.Books.FirstOrDefault(x => x.Id == bookId);
-
-            if (book.Quantity >= orderQuantity)
-            {
-                book.Quantity -= orderQuantity;
-                this.db.SaveChanges();
-
-                return true;
-            }
-
-            return false;
         }
 
         public List<IndexPageBookViewModel> GetRandomBook()

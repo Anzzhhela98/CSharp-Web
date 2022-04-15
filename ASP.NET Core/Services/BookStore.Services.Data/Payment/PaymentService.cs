@@ -1,10 +1,11 @@
 ﻿namespace BookStore.Services.Data.Payment
 {
+    using System;
+    using System.Linq;
+
     using BookStore.Data;
     using BookStore.Web.ViewModels.Payment;
     using Stripe;
-    using System;
-    using System.Linq;
 
     public class PaymentService : IPaymentService
     {
@@ -25,7 +26,7 @@
                 price = (book.Price * model.Count) + 3.8M;
                 model.TotalPriceTransfer = Convert.ToInt64(price* 100);
             }
-
+            ;
             var paymentIntents = new PaymentIntentService();
             var customers = new CustomerService();
             var charges = new ChargeService();

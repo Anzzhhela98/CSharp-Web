@@ -1,6 +1,9 @@
 ﻿namespace BookStore.Web.ViewModels.Books
 {
-    public class CreateBookModel
+    using BookStore.Data.Models;
+    using BookStore.Services.Mapping;
+
+    public class CreateBookModel : IMapFrom<Book>
     {
         public string Title { get; set; }
 

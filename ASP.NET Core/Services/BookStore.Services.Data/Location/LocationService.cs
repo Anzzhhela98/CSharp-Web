@@ -6,11 +6,11 @@
     using BookStore.Data;
     using BookStore.Web.ViewModels.Location;
 
-    public class ShowLocationService : IShowLocationService
+    public class LocationService : ILocationService
     {
         private readonly ApplicationDbContext db;
 
-        public ShowLocationService(ApplicationDbContext db)
+        public LocationService(ApplicationDbContext db)
         {
             this.db = db;
         }
@@ -29,6 +29,23 @@
                 }).ToList();
 
             return locations;
+        }
+
+        public LocationByIdViewModel LocationById(int id)
+        {
+            var locationById = this.db.StoreLocations
+                .Where(l => l.Id == id)
+                .Select(l => new LocationByIdViewModel
+                {
+                    Name = l.Name,
+                    Address = l.Address,
+                    PhoneNumber = l.PhoneNumber,
+                    Email = l.Email,
+                    WorkingTime = l.WorkingTime,
+                    Image = l.Image,
+                }).FirstOrDefault();
+
+            return locationById;
         }
     }
 }

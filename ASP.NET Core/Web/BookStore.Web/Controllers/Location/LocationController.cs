@@ -5,19 +5,17 @@
 
     public class LocationController : Controller
     {
-        private readonly IShowLocationService showLocation;
-        private readonly IShowLocationByIdService showLocationById;
+        private readonly ILocationService locationService;
 
-        public LocationController(IShowLocationService showLocation, IShowLocationByIdService showLocationById)
+        public LocationController(ILocationService locationService)
         {
-            this.showLocation = showLocation;
-            this.showLocationById = showLocationById;
+            this.locationService = locationService;
         }
 
         [HttpGet]
         public IActionResult ShowLocation()
         {
-            var locations = this.showLocation.AllLocation();
+            var locations = this.locationService.AllLocation();
 
             return this.View(locations);
         }
@@ -25,7 +23,7 @@
         [HttpGet]
         public IActionResult LocationById(int id)
         {
-            var location = this.showLocationById.LocationById(id);
+            var location = this.locationService.LocationById(id);
 
             if (location == null)
             {

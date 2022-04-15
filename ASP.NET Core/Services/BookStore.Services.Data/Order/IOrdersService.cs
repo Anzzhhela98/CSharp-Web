@@ -4,6 +4,6 @@
 
     public interface IOrdersService
     {
-        public void SetOrder(PaymentFromViewModel model, string paymentStatus);
+        public void SetOrder(PaymentFromViewModel model, string paymentStatus, string userId);
     }
 }
