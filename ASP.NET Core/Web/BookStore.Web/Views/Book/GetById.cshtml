@@ -4,300 +4,81 @@
     this.ViewData["Title"] = @Model.Title;
 }
 
-
-<div class="breadcrumbs">
-    <div class="container">
-        <ul class="items">
-            <li class="item home">
-                <a asp-controller="Home" asp-action="Index" title="Отиди на основата страница">Основна страница</a>
-            </li>
-            <li class="item product">
-                <span>@this.ViewData["Title"]</span>
-            </li>
-        </ul>
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center"><h1>@Model.Title</h1></div>
     </div>
-</div>
 
-<main id="maincontent" class="page-main">
+    <div class="row">
+        <div class="col-lg-4 col-xs-12 col-sm-12" style="background-color:#fff;">
+            <img src="@Model.ImageImageUrl" class="img-thumbnail" style="border:0px;" alt="@Model.Title">
+        </div>
+        <div class="col-col-lg-8 col-xs-12 col-sm-12">
+            <table class="table table-hover">
+                <tr>
+                    <td>ISBN</td>
+                    <td>@Model.ISBN</td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td>@Model.Price €</td>
+                </tr>
+                <tr>
+                    <td>Categories</td>
+                    <td>@Model.CategoryType</td>
+                </tr>
+                <tr>
+                    <td>Author</td>
+                    <td>@Model.Author</td>
+                </tr>
+                <tr>
+                    <td>Language</td>
+                    <td>@Model.Language</td>
+                </tr>
+                <tr>
+                    <td>Year</td>
+                    <td>@Model.Year</td>
+                </tr>
+                <tr>
+                    <td>Publish date</td>
+                    <td>@Model.DateOfPublication</td>
+                </tr>
+                <tr>
+                    <td>ID</td>
+                    <td>@Model.Id</td>
+                </tr>
+                <tr>
+                    <td>Cover</td>
+                    <td>@Model.Cover</td>
+                </tr>
+            </table>
+            <a class="btn btn-dark btn-block" role="button" asp-controller="Book" asp-action="Buy" asp-route-id="@Model.Id"> » Buy</a>
+        </div>
 
+    </div>
 
-
-    <a href="#" id="contentarea" tabindex="-1" style="visibility: hidden; display:none;">skip</a>
-    <div class="columns col2-layout">
-        <div class="container">
-
-            <div class="row">
-
-                <div class="col-lg-9 col-md-9 col-left-sidebar">
-
-                    <div class="page messages">
-
-                        <div data-placeholder="messages"></div>
-                        <div data-bind="scope: 'messages'">
-                        </div>
-
-                    </div><div class="column main">
-
-                        <div class="product media">
-
-                            <a href="#" id="gallery-prev-area" tabindex="-1" style="visibility: hidden; display:none;">skip</a>
-                            <div class="action-skip-wrapper">
-
-                                <a class="action skip gallery-next-area" href="#gallery-next-area">
-
-                                </a>
-                            </div>
-                            <div class="gallery-placeholder" data-gallery-role="gallery-placeholder">
-                                <div class="fotorama--hidden"></div><style></style><div class="fotorama-item fotorama fotorama1648704774896" data-gallery-role="gallery">
-                                    <div data-gallery-role="fotorama__focusable-start" tabindex="-1"></div>
-                                    <div class="fotorama__wrap fotorama__wrap--css3 fotorama__wrap--slide fotorama__wrap--toggle-arrows fotorama__wrap--no-controls" style="min-width: 0px; max-width: 100%;">
-                                        <div class="fotorama__stage" data-fotorama-stage="fotorama__stage" style="min-width: 330px; min-height: 330px; width: 475px; height: 475px;">
-                                            <div class="fotorama__arr fotorama__arr--prev fotorama__arr--disabled" tabindex="-1" role="button" aria-label="Previous" data-gallery-role="arrow" disabled="disabled" style="display: none;">
-                                                <div class="fotorama__arr__arr"></div>
-                                            </div>
-                                            <div class="fotorama__stage__shaft" tabindex="0" data-gallery-role="stage-shaft" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); margin-left: 0px; width: 475px;">
-                                                <div class="fotorama__stage__frame fotorama__active fotorama_vertical_ratio fotorama__loaded fotorama__loaded--img" aria-hidden="false" data-active="true" style="left: 0px; border:none;">
-                                                </div>
-                                                <div class="fotorama__stage__frame fotorama_vertical_ratio fotorama__loaded fotorama__loaded--img fotorama__active" aria-hidden="false" data-active="true" style="left: 0px;" href="https://knigomania.bg/media/catalog/product/cache/02f16ac392ba7c312a70e2f3c5d752a7/t/a/taro-78-karti-s-rakovodstvo-9786197586657.jpg">
-
-                                                    <img src="@Model.ImageImageUrl" class="img-thumbnail" alt="@Model.Title" aria-labelledby="labelledby1648704774902" class="fotorama__img" aria-hidden="false"><div class="fotorama__caption" aria-hidden="true">
-
-                                                </div>
-
-                                            </div>
-                                            <div class="fotorama__arr fotorama__arr--next fotorama__arr--disabled" tabindex="-1" role="button" aria-label="Next" data-gallery-role="arrow" disabled="disabled" style="display: none;">
-                                                <div class="fotorama__arr__arr"></div>
-                                            </div>
-                                            <div class="fotorama__video-close"></div>
-                                            <div class="fotorama__zoom-in zoom-in-loaded" data-gallery-role="fotorama__zoom-in" aria-label="Zoom in" role="button" tabindex="0"></div>
-                                            <div class="fotorama__zoom-out zoom-out-loaded" data-gallery-role="fotorama__zoom-out" aria-label="Zoom out" role="button" tabindex="0"></div>
-
-                                        </div>
-                                        <div class="fotorama__nav-wrap" data-gallery-role="nav-wrap" style="display: none;">
-                                            <div class="fotorama__nav" style="height: 154px;">
-
-                                                <div class="fotorama__thumb__arr fotorama__thumb__arr--left fotorama__arr--disabled" role="button" aria-label="Previous" data-gallery-role="arrow" tabindex="-1" disabled="disabled" style="display: none;">
-                                                    <div class="fotorama__thumb--icon"></div>
-                                                </div>
-                                                <div class="fotorama__nav__shaft">
-                                                    <div class="fotorama__thumb-border" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px); width: 1px; height: 150px;"></div>
-                                                </div>
-                                                <div class="fotorama__thumb__arr fotorama__thumb__arr--right fotorama__arr--disabled" role="button" aria-label="Next" data-gallery-role="arrow" tabindex="-1" disabled="disabled" style="display: none;">
-                                                    <div class="fotorama__thumb--icon"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div data-gallery-role="fotorama__focusable-end" tabindex="-1"></div>
-                                </div>
-                                <div class="magnifier-preview magnify-hidden" data-gallery-role="magnifier" id="preview" style="display:none;"></div>
-                            </div>
-
-                            <div class="action-skip-wrapper">
-
-                                <a class="action skip gallery-prev-area" href="#gallery-prev-area">
-                                </a>
-                            </div><a href="#" id="gallery-next-area" tabindex="-1" style="visibility: hidden; display:none;">skip</a>
-                        </div><div class="product-info-main">
-
-                            <div class="page-title-wrapper product">
-                                <h1 class="page-title">
-                                    <span class="base" data-ui-id="page-title-wrapper">@Model.Title</span>
-
-                                </h1>
-                            </div>
-                            <div class="product-info-price">
-
-                                <div class="product-info-stock-sku">
-                                    <div class="stock available" title="Наличност">
-                                        <span>На склад</span>
-                                    </div>
-                                    <div class="product attribute sku">
-                                        <strong class="type">ISBN</strong>
-                                        <div class="value">9786197586657</div>
-                                    </div>
-                                </div><div class="price-box price-final_price" data-role="priceBox" data-product-id="114905" data-price-box="product-id-114905">
-                                    <span class="price-container price-final_price tax weee">
-                                        <span id="product-price-114905" data-price-amount="22" data-price-type="finalPrice" class="price-wrapper "><span class="price">@Model.Price лв.</span></span>
-                                    </span>
-                                </div>
-
-
-                            </div>
-                            <div class="product-add-form">
-                                <form data-product-sku="9786197586657" action="https://knigomania.bg/checkout/cart/add/uenc/aHR0cHM6Ly9rbmlnb21hbmlhLmJnL3Rhcm8ta29tcGxla3Qta2FydGktaS1rbmlnYS1pbnN0cnVrY2lqYS5odG1s/product/114905/" method="post" id="product_addtocart_form" novalidate="novalidate">
-                                    <input type="hidden" name="product" value="114905">
-                                    <input type="hidden" name="selected_configurable_option" value="">
-                                    <input type="hidden" name="related_product" id="related-products-field" value="">
-                                    <input type="hidden" name="item" value="114905">
-                                    <input name="form_key" type="hidden" value="qlYfDIkvyZXIpQGr"> <div class="box-tocart">
-                                        <div class="fieldset">
-                                            <div class="field qty">
-                                                <label class="label" for="qty"><span>Кол-во</span></label>
-                                                <div class="control control-qty-cart">
-                                                    <input type="number" name="qty" id="qty" value="1" title="Кол-во" class="qty-default input-text qty" data-validate="{&quot;required-number&quot;:true,&quot;validate-item-quantity&quot;:{&quot;minAllowed&quot;:1,&quot;maxAllowed&quot;:10000}}">
-                                                    <div class="control-qty">
-                                                        <span class="quantity-controls quantity-plus"></span>
-                                                        <span class="quantity-controls quantity-minus"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="actions">
-                                                <button type="submit" title="Купи" class="action primary tocart" id="product-addtocart-button">
-                                                    <span>Купи</span>
-                                                </button>
-                                                <div id="instant-purchase" data-bind="scope:'instant-purchase'">
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div>
-
-                            <div class="product-social-links">
-                                <div class="product-addto-links" data-role="add-to-links">
-                                    <a title="Добави към Списък с желани продукти" href="#" class="action towishlist" data-post="{&quot;action&quot;:&quot;https:\/\/knigomania.bg\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:114905,&quot;uenc&quot;:&quot;aHR0cHM6Ly9rbmlnb21hbmlhLmJnL3Rhcm8ta29tcGxla3Qta2FydGktaS1rbmlnYS1pbnN0cnVrY2lqYS5odG1s&quot;}}" data-action="add-to-wishlist"><span>Добави към Списък с желани продукти</span></a>
-                                    <a title="Добави за сравнение" href="#" data-post="{&quot;action&quot;:&quot;https:\/\/knigomania.bg\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;114905&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly9rbmlnb21hbmlhLmJnL3Rhcm8ta29tcGxla3Qta2FydGktaS1rbmlnYS1pbnN0cnVrY2lqYS5odG1s&quot;}}" data-role="add-to-links" class="action tocompare">
-                                        <span>Добави за сравнение</span>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="product attribute overview">
-                                <div class="value">@Model.Description</div>
-                            </div>
-                            <div id="addthis_wrap">
-                                <div class="addthis_toolbox addthis_default_style ">
-
-                                    <div class="addthis_inline_share_toolbox"></div>
-                                </div>
-                            </div>
-
-
-
-                        </div> <div class="product info detailed">
-                            <div class="product data items vertical-style">
-                                <ul class="resp-tabs-list" role="tablist">
-                                    <li class="data item title active" aria-labelledby="tab-label-additional-title" data-role="collapsible" id="tab-label-additional" role="tab" data-collapsible="true" aria-controls="additional" aria-selected="false" aria-expanded="true" tabindex="0">
-                                        <a class="data switch" tabindex="-1" data-toggle="switch" href="#additional" id="tab-label-additional-title">
-                                            Характеристики и описание
-                                        </a>
-                                    </li>
-                                    <li class="data item title" aria-labelledby="tab-label-storehouse-title" data-role="collapsible" id="tab-label-storehouse" role="tab" data-collapsible="true" aria-controls="storehouse" aria-selected="false" aria-expanded="false" tabindex="0">
-                                        <a class="data switch" tabindex="-1" data-toggle="switch" href="#storehouse" id="tab-label-storehouse-title">
-                                            Наличност в книжарници
-                                        </a>
-                                    </li>
-                                </ul>
-                                
-                                <div class="resp-tabs-container">
-                                    <div class="data item content resp-tab-content" id="additional" data-role="content" aria-labelledby="tab-label-additional" role="tabpanel" aria-hidden="false">
-                                        <div class="additional-attributes-wrapper table-wrapper">
-                                            <table class="data table additional-attributes" id="product-attribute-specs-table">
-                                                <caption class="table-caption">Повече информация</caption>
-                                                <tbody>
-                                                    <tr>
-                                                        <th class="col label" scope="row">Автор</th>
-                                                         <td class="col data" data-th="Корица">@Model.Author</td>
-                                                        @*<td class="col data" data-th="Автор"><a class="product-item-link product-item-author-link" href="https://knigomania.bg/catalogsearch/advanced/result/?author%5B0%5D=63127">Артър Едуард Уейт</a></td>*@
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="col label" scope="row">Корица</th>
-                                                        <td class="col data" data-th="Корица">@Model.Cover</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="col label" scope="row">Език</th>
-                                                        <td class="col data" data-th="Език">@Model.Language</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="col label" scope="row">Година</th>
-                                                        <td class="col data" data-th="Година">@Model.Year</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="col label" scope="row">Дата на получаване</th>
-                                                        <td class="col data" data-th="Дата на получаване">@Model.DateOfPublication</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="col label" scope="row">ID на книга</th>
-                                                        <td class="col data" data-th="ID на книга">@Model.UniqueIdBook</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="col label" scope="row">ISBN</th>
-                                                        <td class="col data" data-th="ISBN">@Model.ISBN</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="col label" scope="row">Категории</th>
-                                                        <td class="col data" data-th="Категории"><a class="product-item-link product-item-category-link" href="https://knigomania.bg/ezoterika-parapsihologia/astrologija-i-horoskopi.html">@Model.CategoryType</a><br><a class="product-item-link product-item-category-link" href="https://knigomania.bg/izdanija-na-b-lgarski-ezik.html">Книги на български език</a><br><a class="product-item-link product-item-category-link" href="https://knigomania.bg/new-books.html">Нови книги</a></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <hr>
-                                        <div class="product attribute description">
-                                            <div class="value">
-
-                                                <p><strong>Книгата идва в удобна за вас опаковка.</strong></p>
-
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="data item content resp-tab-content" id="storehouse" data-role="content" aria-labelledby="tab-label-storehouse" role="tabpanel" aria-hidden="true" style="display: none;">
-                                        <div class="storehouse-content">
-                                            <ul>
-                                                <li>София / Книгомания / бул. Васил Левски 28</li>
-                                                <li>София / Книгомания / бул. Прага 17</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <input name="form_key" type="hidden" value="qlYfDIkvyZXIpQGr">
-
-
-                        <div></div>
-
-                        <ul>
-                            <li>
-                                <div class="service-content">
-                                    <div class="policy">
-                                        <a asp-controller="Order" asp-action="OrderMessage"><em class="fa fa-truck"></em><span>Доставка за 2,90 лв. </span></a>
-                                        <p>Получете поръчката си бързо с най-евтината доставка за цялата страна. </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="service-content">
-                                    <div class="policy">
-                                        <a asp-controller="Payment" asp-action="MethodOfPayment"><em class="fa fa-usd"></em><span>Начин на плащане</span></a>
-                                        <p>Заплащането на направените поръчки може да се извършва по няколко различни начина.</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="service-content">
-                                    <div class="policy">
-                                        <a asp-controller="Contact" asp-action="Index"><em class="fa fa-phone"></em><span>Имате въпроси? Обадете ни се</span></a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="service-content">
-                                    <div class="policy">
-                                        <a asp-controller="Contact" asp-action="Index"><em class="fa fa-refresh"></em><span>Замяна и връщане</span></a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-
+    <div class="row pt-3">
+        <div class="col-12">
+            <p>@Model.Description</p>
         </div>
     </div>
-</main>
+
+    <div class="row pt-3">
+        <div class="col-3">
+            <a asp-controller="Order" asp-action="OrderMessage"><em class="fa fa-truck"></em><span> Доставка за 2,90 лв. </span></a>
+            <p>Получете поръчката си бързо с най-евтината доставка за цялата страна. </p>
+        </div>
+
+        <div class="col-3">
+            <a asp-controller="Payment" asp-action="MethodOfPayment"><em class="fa fa-usd"></em><span>» Начин на плащане</span></a>
+            <p>Заплащането на направените поръчки може да се извършва по няколко различни начина.</p>
+        </div>
+        <div class="col-3">
+            <a asp-controller="Contact" asp-action="Index"><em class="fa fa-phone"></em><span> Имате въпроси? Обадете ни се</span></a>
+        </div>
+        <div class="col-3">
+            <a asp-controller="Contact" asp-action="Index"><em class="fa fa-refresh"></em><span>» Замяна и връщане</span></a>
+        </div>
+    </div>
+
+</div>

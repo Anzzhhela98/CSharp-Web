@@ -19,18 +19,12 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHNtYWxsJTIwYm9va3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" alt="Second slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Hi</h5>
-                <p>Now</p>
-            </div>
+            <img class="d-block w-100" src="~/img/slide1.jpg" alt="Your bookstore place">
+            
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="https://images.unsplash.com/photo-1587734459056-c0155b92d9a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Second slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Hi</h5>
-                <p>Now</p>
-            </div>
+            <img class="d-block w-100" src="~/img/slide2.jpg" alt="Online bookstore">
+            
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -42,12 +36,7 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-@*  <a class="btn btn-primary me-2" href="https://mdbootstrap.com/docs/standard/getting-started/installation/" target="_blank" role="button">Download MDB UI KIT <i class="fas fa-download"></i></a>
-    <a class="btn btn-danger me-2" target="_blank" href="https://mdbootstrap.com/docs/standard/" role="button">Learn more</a>
-    <a class="btn btn-success me-2" target="_blank" href="https://mdbootstrap.com/docs/standard/getting-started/" role="button">Tutorials</a>
-    <a class="btn btn-dark me-2" target="_blank" href="https://github.com/mdbootstrap/mdb-ui-kit" role="button">GitHub <i class="fab fa-github ms-2"></i></a>
 
-    <hr class="mb-5"/>*@
 
 <!--Carousel Wrapper-->
 <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
@@ -75,7 +64,7 @@
 
             @foreach (var item in Model.Take(4))
             {
-                <div class="col-md-3" style="float:left">
+                <div class="col-md-3" style="float:left;">
                     <div class="card mb-2">
                         <a asp-controller="Book" asp-action="GetById" asp-route-id="@item.Id">
                         <img class="card-img-top"
@@ -102,7 +91,7 @@
 
            @foreach (var item in Model.Skip(4))
             {
-                <div class="col-md-3" style="float:left">
+                <div class="col-md-3" style="float:left;">
                     <div class="card mb-2">
                         <a asp-controller="Book" asp-action="GetById" asp-route-id="@item.Id">
                         <img class="card-img-top"
@@ -133,22 +122,18 @@
 </div>
 <!--/.Carousel Wrapper-->
 
-
-<div class="services-home">
-    <div class="banner-policy">
-        <div class="inner">
-            <div class="policy">
-                <a asp-controller="O    rder" asp-action="OrderMessage"><em class="fa fa-truck"></em><span>Delivery 3,80 EU&nbsp;</span></a>
-                <p>Get your order quickly with the cheapest delivery throughout the country.</p>
-            </div>
-            <div class="policy">
-                <a asp-controller="Payment" asp-action="MethodOfPayment"><i class="fa-solid fa-circle-dollar"></i><span>Payment methods</span></a>
-                <p>Some</p>
-            </div>
-            <div class="policy">
-                <a asp-controller="Payment" asp-action="Charge"><i class="fa-solid fa-circle-dollar"></i><span>Payment methods</span></a>
-                <p>Some</p>
-            </div>
+<div class="container">
+    <div class="row text-center p-3">
+        <div class="col-6">
+            <a asp-controller="Payment" asp-action="MethodOfPayment">
+                <img src="~/img/payment.jpg" alt="Payment method"/>
+            </a>
+        </div>
+        <div class="col-6">
+            <a asp-controller="Order" asp-action="OrderMessage">
+            <img src="~/img/delivery.jpg" alt="Delivery" />
+            </a>
         </div>
     </div>
 </div>
+

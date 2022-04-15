@@ -7,23 +7,11 @@
 }
 <h1>@this.ViewData["Title"]</h1>
 
-@*<div class="text-center">
-    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    </div>
-*@
 
 <div id="m-navigation-product-list-wrapper">
     <div class="toolbar-top">
-        <div class="toolbar toolbar-products">
-            <div class="modes">
-                <a class="modes-mode mode-list" title="Списък" href="#" data-role="mode-switcher" data-value="list">
-                    <span>Списък</span>
-                </a>
-            </div>
-            <p class="toolbar-amount">
-                Артикули <span class="toolbar-number">1</span>-<span class="toolbar-number">20</span> от <span class="toolbar-number">@Model.Books.Count()</span>
-            </p>
+        <div class="toolbar toolbar-products p-2 text-center">
+
             <div class="toolbar-sorter sorter">
                 <label class="sorter-label">Сортирай по</label>
                 <select data-role="sorter" class="sorter-options">
@@ -41,85 +29,36 @@
                     <span>Настрой възходяща посока</span>
                 </a>
             </div>
-            <div class="field limiter">
-                <label class="label">
-                    <span>Покажи</span>
-                </label>
-                <div class="control">
-                    <select data-role="limiter" class="limiter-options">
-                        <option value="20" selected="selected">
-                            20
-                        </option>
-                        <option value="40">
-                            40
-                        </option>
-                        <option value="60">
-                            60
-                        </option>
-                        <option value="100">
-                            100
-                        </option>
-                        <option value="all">
-                            Всички
-                        </option>
-                    </select>
-                </div>
-            </div>
+
         </div>
     </div>
 
-    <div class="category-product products wrapper grid products-grid">
-        <ol class="products list items product-items row">
+
+    <div class="container">
+        <div class="row">
             @foreach (var book in @Model.Books)
             {
-                <li class="item product product-item">
-                    <div class="product-item-info" data-container="product-grid">
-                        <div class="media col-md-4">
-                            <img src="@book.ImageUrl" width="300" class="mr-3 img-responsive">
-                        </div>
-                        <div class="product details product-item-details">
-                            <strong class="product name product-item-name">
-                                <a class="product-item-link" asp-action="GetById" asp-route-id="@book.Id">
-                                    @book.Title
-                                </a>
-                            </strong>
-                            <div class="product author product-item-author product-author">
-                                @book.Author
-                            </div>
-                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="114679" data-price-box="product-id-114679">
-                                <span class="price-container price-final_price tax weee">
-                                    <span id="product-price-114679" data-price-amount="@book.Price" data-price-type="finalPrice" class="price-wrapper "><span class="price">@book.Price</span></span>
-                                </span>
-                            </div>
-                            <div class="product-item-inner">
-                                <div class="product actions product-item-actions">
-                                    <div class="actions-primary">
-                                      @*  <form  method="POST">
-                                            <input type="hidden" name="product" value="114679">
-                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9rbmlnb21hbmlhLmJnL2NoZWNrb3V0L2NhcnQvYWRkL3VlbmMvYUhSMGNITTZMeTlyYm1sbmIyMWhibWxoTG1KbkwyNWxkeTFpYjI5cmN5NW9kRzFzL3Byb2R1Y3QvMTE0Njc5Lw,,">
-                                            <input name="form_key" type="hidden" value="OKWEAXGcnycHNuYb"> 
-                                            <button asp-controller="Book" asp-action="Buy" asp-route-id = "@book.Id" type="submit" title="Купи" class="action tocart primary">
-                                                <span>Купи</span>
-                                            </button>
-                                        </form>*@
-                                        <a class="product-item-link" asp-controller="Book" asp-action="Buy" asp-route-id = "@book.Id">
-                                   Buy
-                                </a>
-                                    </div>
-                                    <div data-role="add-to-links" class="actions-secondary">
-                                        <a href="#" class="action towishlist" title="Добави към Списък с желани продукти" aria-label="Добави към Списък с желани продукти" data-post="{&quot;action&quot;:&quot;https:\/\/knigomania.bg\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:114679,&quot;uenc&quot;:&quot;aHR0cHM6Ly9rbmlnb21hbmlhLmJnL25ldy1ib29rcy5odG1s&quot;}}" data-action="add-to-wishlist" role="button">
-                                            <span>Добави към Списък с желани продукти</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="col-lg-4 product-item-info p-2 col-xs-12 col-sm-12">
+                    <img src="@book.ImageUrl" width="300" class="img-fluid">
+                    <div class="bookTitle">
+                        <a class="bookTitleLink" asp-action="GetById" asp-route-id="@book.Id">@book.Title</a>
                     </div>
-                </li>
-                <br />
+                    <div>
+                        @book.Author
+                    </div>
+                    <div data-price-amount="@book.Price" data-price-type="finalPrice" >
+                        @book.Price
+                    </div>
+
+                    <a class="btn btn-dark btn-block" role="button" asp-controller="Book" asp-action="Buy" asp-route-id="@book.Id"> » Buy</a>
+                    
+                </div>
             }
-        </ol>
+        </div>
     </div>
+
+
+    
 </div>
 <hr />
 <nav aria-label="...">

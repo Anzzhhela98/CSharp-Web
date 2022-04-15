@@ -45,7 +45,7 @@
             return this.View();
         }
 
-        public IActionResult Message()
+        public IActionResult Message(ContactsViewModel model)
         {
             return this.View();
         }
