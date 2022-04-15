@@ -13,16 +13,16 @@
         <div class="toolbar toolbar-products p-2 text-center">
 
             <div class="toolbar-sorter sorter">
-                <label class="sorter-label">Сортирай по</label>
+                <label class="sorter-label">Order by</label>
                 <select data-role="sorter" class="sorter-options">
-                    <option value="received_date" selected="selected">
-                        Дата на получаване
+                    <option value="price" selected="selected">
+                        Price
                     </option>
-                    <option value="price">
-                        Цена
+                    <option value="received_date" >
+                        Data of publishing
                     </option>
                     <option value="name">
-                        Име
+                        Name
                     </option>
                 </select>
                 <a title="Настрой възходяща посока" href="#" class="action sorter-action sort-desc" data-role="direction-switcher" data-value="asc">
@@ -46,9 +46,7 @@
                     <div>
                         @book.Author
                     </div>
-                    <div data-price-amount="@book.Price" data-price-type="finalPrice" >
-                        @book.Price
-                    </div>
+                   <span class="price" style="font-weight: bold; color:#80391e;">€16.00</span>
 
                     <a class="btn btn-dark btn-block" role="button" asp-controller="Book" asp-action="Buy" asp-route-id="@book.Id"> » Buy</a>
                     

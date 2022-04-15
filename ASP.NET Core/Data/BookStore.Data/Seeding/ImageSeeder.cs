@@ -17,6 +17,14 @@
 
             await dbContext.Images.AddAsync(new Image
             {
+                Id = "9bdff8c18-09bf-413a-ad80-25120fe04253",
+                ImageUrl = "https://knigomania.bg/media/catalog/product/cache/02f16ac392ba7c312a70e2f3c5d752a7/p/r/prevrashtane-sartseto-na-drakona-2-9789542621478.jpg",
+                Extension = "JPG",
+                CreatedByUserId = "1ae93590-714e-488f-aef6-622473947f4b",
+            });
+
+            await dbContext.Images.AddAsync(new Image
+            {
                 Id = "9a706910-5f62-4fc5-b954-32fd0c3c8bd9",
                 ImageUrl = "https://knigomania.bg/media/catalog/product/cache/02f16ac392ba7c312a70e2f3c5d752a7/v/t/vtorata-bulgaria-9786191952458.jpg",
                 Extension = "JPG",

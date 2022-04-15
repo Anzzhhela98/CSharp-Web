@@ -18,6 +18,26 @@
                 ////    dbContext.Books.Attach(entity);
                 ////    dbContext.Books.Remove(entity);
                 ////};
+                ///
+                await dbContext.Books.AddAsync(new Book
+                {
+                    Title = "Transformation Book 2 The heart of the dragon",
+                    Author = "Nora Roberts",
+                    Description = "A long time ago, the world of magic was separated from that of humans. But some, like Breen Shivon Kelly, can travel freely between the two worlds. She returns to Talaf with her best friend Marco, who is both stunned and fascinated by this place inhabited by dragons, fairies and mermaids. Here, Breen is not the insecure teacher he knows, but a strong woman who is learning to embrace her true nature.",
+                    Quantity = 100,
+                    Price = 18.00M,
+                    Pages = 324,
+                    Cover = "soft",
+                    Language = "Bulgarian",
+                    Year = 2019,
+                    DateOfPublication = "Apr 1, 2022",
+                    UniqueIdBook = "614331",
+                    ISBN = "9789542621478",
+                    ImageId = "bdff8c18-09bf-413a-ad80-25120fe04253",
+                    IsOnPromotional = false,
+                    CategoryId = 32,
+                    CreatedByUserId = "1ae93590-714e-488f-aef6-622473947f4b",
+                });
                 return;
             }
 
