@@ -96,13 +96,14 @@
                       Author = x.Author,
                       Title = x.Title,
                       CreatedOn = DateTime.Now,
+                      Sort = sort,
                       ImageUrl = this.db.Images.Where(i => i.Id == x.ImageId).Select(x => x.ImageUrl).FirstOrDefault(),
                       Id = x.Id,
                   })
                   .Skip((page - 1) * itemsPerPage)
                   .Take(itemsPerPage)
                   .ToList();
-
+ 
             if (sort == "Price")
             {
                 book = book.OrderByDescending(x => x.Price).ToList();
