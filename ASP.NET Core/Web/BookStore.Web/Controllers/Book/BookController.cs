@@ -46,7 +46,7 @@
         }
 
         [HttpGet]
-        public IActionResult All(int id = 1)
+        public IActionResult All(string sort = "Price", int id = 1)
         {
             const int itemsPerPage = 6;
 
@@ -55,7 +55,7 @@
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
                 BooksCount = this.booksService.GetCount(),
-                Books = this.booksService.GetAll(id, itemsPerPage),
+                Books = this.booksService.GetAll(id, sort, itemsPerPage),
             };
 
             if (books.Books.Count() == 0)
@@ -108,6 +108,12 @@
             }
 
             return this.View(books);
+        }
+
+        [HttpGet]
+        public IActionResult OrderBook(string sort)
+        {
+            return this.View();
         }
     }
 }

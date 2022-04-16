@@ -2,10 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using BookStore.Data.Models;
-    using BookStore.Services.Mapping;
-
-    public class ContactsViewModel : IMapFrom<UserQuestion>, IMapTo<UserQuestion>
+    public class ContactsViewModel
     {
         [Required]
         public string Question { get; set; }

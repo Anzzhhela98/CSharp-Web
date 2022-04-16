@@ -16,6 +16,9 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+             <a href="/" class="navbar-brand">
+              <i class="fas fa-blog"></i> &nbsp;
+               Pick A Book
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -58,13 +61,63 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted  text-light bg-dark">
         <div class="container">
             &copy; @DateTime.Now.Year - @GlobalConstants.SystemName  
             » <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> » <a asp-area="" asp-controller="Contact" asp-action="Index">Contacts</a> » <a asp-area="" asp-controller="Home" asp-action="AboutUs">About Us</a>
         </div>
     </footer>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
+
+
+
+
+     @* <nav class="navbar navbar-dark navbar-expand-sm bg-dark fixed-top">
+              <div class="container">
+              <a href="/" class="navbar-brand">
+              <i class="fas fa-blog"></i> &nbsp;
+              Pick A Book
+              </a>
+
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+
+
+              <div id="navbarCollapse" class="collapse navbar-collapse">
+              <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                      <a href="" class="nav-link active">
+                          Home
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="" class="nav-link active">
+                          Blog
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="" class="nav-link active">
+                          About
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="" class="nav-link active">
+                          Contact
+                      </a>
+                  </li>
+              </ul>
+              </div>
+          </div>
+          </nav>*@
+
+
+
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>

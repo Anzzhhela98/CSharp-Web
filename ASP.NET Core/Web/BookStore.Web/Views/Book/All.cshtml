@@ -1,5 +1,5 @@
 ﻿@model BookStore.Web.ViewModels.Books.BooksInListModel
-
+@*@using Microsoft.VisualStudio.Web.CodeGeneration.Design*@
 
 @using BookStore.Common
 @{
@@ -14,20 +14,30 @@
 
             <div class="toolbar-sorter sorter">
                 <label class="sorter-label">Order by</label>
-                <select data-role="sorter" class="sorter-options">
-                    <option value="price" selected="selected">
+                <select name="clause" onchange=getComboA(this) data-role="sorter" class="sorter-options">
+                    <option value="Price">
                         Price
                     </option>
-                    <option value="received_date">
+                    <option value="Data">
                         Data of publishing
                     </option>
-                    <option value="name">
+                    <option value="Name">
                         Name
                     </option>
                 </select>
-                <a title="Настрой възходяща посока" href="#" class="action sorter-action sort-desc" data-role="direction-switcher" data-value="asc">
-                    <span>Настрой възходяща посока</span>
-                </a>
+                @* <form method="Book" action="All" type="submit">
+                    <select id="comboA" name="value">
+                    <option value="Price" selected="selected">
+                    Price
+                    </option>
+                    <option value="Data">
+                    Data of publishing
+                    </option>
+                    <option value="Name">
+                    Name
+                    </option>
+                    </select>
+                    </form>*@
             </div>
 
         </div>
@@ -95,3 +105,28 @@
         </li>
     </ul>
 </nav>
+
+@section Scripts{
+<script type="text/javascript">
+        function getComboA(selectObject) {
+      var sortedData = selectObject;
+      console.log(sortedData.value);
+
+     
+    var form = document.createElement("form");
+    var element1 = document.createElement("input"); 
+
+    form.method = "GET";
+    form.controller =""
+    form.action = "All";   
+
+    element1.value=sortedData.value;
+    element1.name="sort";
+    form.appendChild(element1);  
+
+    document.body.appendChild(form);
+
+    form.submit();
+    }
+</script>
+}

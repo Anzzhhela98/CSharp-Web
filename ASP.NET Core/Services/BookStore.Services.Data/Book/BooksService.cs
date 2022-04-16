@@ -86,21 +86,36 @@
             this.db.SaveChanges();
         }
 
-        public IEnumerable<BookInListModel> GetAll(int page, int itemsPerPage = 4)
+        public IEnumerable<BookInListModel> GetAll(int page, string sort, int itemsPerPage = 4)
         {
+            ;
             var book = this.db.Books
                   .Select(x => new BookInListModel
                   {
                       Price = x.Price.ToString(),
                       Author = x.Author,
                       Title = x.Title,
+                      CreatedOn = DateTime.Now,
                       ImageUrl = this.db.Images.Where(i => i.Id == x.ImageId).Select(x => x.ImageUrl).FirstOrDefault(),
                       Id = x.Id,
                   })
                   .Skip((page - 1) * itemsPerPage)
                   .Take(itemsPerPage)
                   .ToList();
-            ;
+
+            if (sort == "Price")
+            {
+                book = book.OrderByDescending(x => x.Price).ToList();
+            }
+            if (sort == "Name")
+            {
+                book = book.OrderBy(x => x.Title).ToList();
+            }
+            else
+            {
+                book = book.OrderBy(x => x.CreatedOn).ToList();
+            }
+
             return book;
         }
 

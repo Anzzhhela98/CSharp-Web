@@ -7,7 +7,7 @@
 
     public interface IBooksService
     {
-        IEnumerable<BookInListModel> GetAll(int page, int itemsPerPage = 4);
+        IEnumerable<BookInListModel> GetAll(int page, string sort, int itemsPerPage = 4);
 
         IEnumerable<BookInListModel> GetAllPromotional(int page, int itemsPerPage = 4);
 
