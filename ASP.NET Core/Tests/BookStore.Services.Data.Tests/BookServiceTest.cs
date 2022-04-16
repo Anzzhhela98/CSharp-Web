@@ -309,7 +309,7 @@
         }
 
         [Fact]
-        public void GetAllPromotionalReturnsSingleBook()
+        public void GetAllPromotionalReturnsEmptyBook()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("GetAllPromotionalReturnsSingleBook").Options;
             var dbContext1 = new ApplicationDbContext(options);
@@ -337,7 +337,7 @@
 
             var books = service.GetAllPromotional(1, 4);
 
-            Assert.Single(books);
+            Assert.Empty(books);
         }
 
         [Fact]

@@ -18,7 +18,7 @@
                     <option value="price" selected="selected">
                         Price
                     </option>
-                    <option value="received_date" >
+                    <option value="received_date">
                         Data of publishing
                     </option>
                     <option value="name">
@@ -46,24 +46,25 @@
                     <div>
                         @book.Author
                     </div>
-                   <span class="price" style="font-weight: bold; color:#80391e;">€16.00</span>
+                    <span class="price" style="font-weight: bold; color:#80391e;">€@book.Price</span>
 
                     <a class="btn btn-dark btn-block" role="button" asp-controller="Book" asp-action="Buy" asp-route-id="@book.Id"> » Buy</a>
-                    
+
                 </div>
             }
         </div>
     </div>
 
 
-    
+
 </div>
 <hr />
 <nav aria-label="...">
     <ul class="pagination justify-content-center">
-        <li class="page-item @if(!Model.HasPreviousPage) {
+        <li class="page-item
+            @if(!Model.HasPreviousPage) {
         <text>disabled</text>
-}">
+            }">
             <span class="page-link" asp-action="All" asp-route-id="@Model.PreviousPageNumber">Previous</span>
         </li>
         @for (int i = Model.PageNumber - 3; i < Model.PageNumber; i++)

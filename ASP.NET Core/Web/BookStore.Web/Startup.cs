@@ -1,6 +1,5 @@
 ﻿namespace BookStore.Web
 {
-    using System.Configuration;
     using System.Reflection;
 
     using BookStore.Data;
@@ -31,7 +30,7 @@
     using Microsoft.Extensions.Hosting;
     using Stripe;
 
-    using OrdersService = Services.Data.Order.OrdersService;
+    using OrdersService = BookStore.Services.Data.Order.OrdersService;
 
     public class Startup
     {
@@ -87,6 +86,7 @@
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        [System.Obsolete]
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);

@@ -19,7 +19,7 @@
 
         List<BookViewModel> GetAll();
 
-        List<BookViewModel> GetPromotionalBooks();
+        //List<BookViewModel> GetPromotionalBooks();
 
         List<IndexPageBookViewModel> GetRandomBook();
 

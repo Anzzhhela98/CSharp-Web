@@ -43,12 +43,30 @@
                     <div>
                         @book.Author
                     </div>
-                    <div data-price-amount="@book.Price" data-price-type="finalPrice" >
-                        @book.Price
+
+                        <div class="price-box price-final_price" data-role="priceBox" data-product-id="112147" data-price-box="product-id-112147">
+                            <span class="special-price">
+                                <span class="price-container price-final_price tax weee">
+                                    <span class="price-label">Special Price</span>
+                                    <span id="product-price-112147" data-price-amount="6.49" data-price-type="finalPrice" class="price-wrapper "><span class="price">€@book.PromoPrice</span></span>
+                                </span>
+                            </span>
+                            <span class="old-price">
+                                <span class="price-container price-final_price tax weee">
+                                    <span class="price-label">Regular Price</span>
+                                    <span id="old-price-112147" data-price-amount="8.13" data-price-type="oldPrice" class="price-wrapper "><span class="price">€@book.Price</span></span>
+                                </span>
+                            </span>
+                        </div>
+                   @* <div data-price-amount="@book.Price" data-price-type="finalPrice">
+                        @book.PromoPrice
                     </div>
+                    <div data-price-amount="@book.Price" data-price-type="finalPrice">
+                        @book.Price
+                    </div>*@
 
                     <a class="btn btn-dark btn-block" role="button" asp-controller="Book" asp-action="Buy" asp-route-id="@book.Id"> » Buy</a>
-                    
+
                 </div>
             }
         </div>
@@ -59,7 +77,8 @@
 <nav aria-label="...">
     <ul class="pagination justify-content-center">
         <li class="page-item @if(!Model.HasPreviousPage) {
-        <text>disabled</text>}">
+        <text>disabled</text>
+}">
             <span class="page-link" asp-action="Promotional" asp-route-id="@Model.PreviousPageNumber">Previous</span>
         </li>
         @for (int i = Model.PageNumber - 3; i < Model.PageNumber; i++)
@@ -75,7 +94,7 @@
                 <span class="sr-only">(current)</span>
             </span>
         </li>
-           @for (int i = Model.PageNumber + 1; i <= @Model.PageNumber + 3; i++)
+        @for (int i = Model.PageNumber + 1; i <= @Model.PageNumber + 3; i++)
         {
             if (@i <= Model.PagesCount)
             {

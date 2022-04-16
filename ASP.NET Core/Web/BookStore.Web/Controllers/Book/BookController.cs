@@ -26,36 +26,6 @@
             this.booksService = booksService;
         }
 
-        //[HttpGet]
-        //[Authorize]
-        //public IActionResult Create()
-        //{
-        //    var userId = this.httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-        //    var isAuthorizedToCreateBook = this.authorizedToCreateBook.IsAuthorizedToCreateBook(userId);
-
-        //    if (!isAuthorizedToCreateBook)
-        //    {
-        //        return this.Redirect("/Author/RegistarAuthor");
-        //    }
-
-        //    return this.View();
-        //}
-
-        //[HttpPost]
-        //[Authorize]
-        //public IActionResult Create(CreateBookModel model)
-        //{
-        //    if (!this.ModelState.IsValid)
-        //    {
-        //        return this.View(model);
-        //    }
-
-        //    this.booksService.CreateBook(model);
-
-        //    return this.Redirect("/");
-        //}
-
         [HttpGet]
         public IActionResult Promotional(int id = 1)
         {
@@ -114,7 +84,6 @@
         [HttpGet]
         public IActionResult Buy(int id)
         {
-            ;
             if (id == 0)
             {
                 return this.View("EmptyCart");
@@ -124,6 +93,7 @@
             {
                 //var userId = this.httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 var book = this.booksService.Buy(id);
+                ;
                 return this.View(book);
             }
 

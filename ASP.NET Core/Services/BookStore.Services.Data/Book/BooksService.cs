@@ -88,7 +88,6 @@
         public IEnumerable<BookInListModel> GetAll(int page, int itemsPerPage = 4)
         {
             var book = this.db.Books
-                .Where(x => x.IsDeleted == false)
                   .Select(x => new BookInListModel
                   {
                       Price = x.Price.ToString(),
@@ -100,17 +99,18 @@
                   .Skip((page - 1) * itemsPerPage)
                   .Take(itemsPerPage)
                   .ToList();
-
+            ;
             return book;
         }
 
         public IEnumerable<BookInListModel> GetAllPromotional(int page, int itemsPerPage = 4)
         {
             var book = this.db.Books
-                  .Where(x => x.IsOnPromotional == false)
+                  .Where(x => x.IsOnPromotional == true)
                   .Select(x => new BookInListModel
                   {
                       Price = x.Price.ToString(),
+                      PromoPrice = x.PromoPrice.ToString(),
                       Author = x.Author,
                       Title = x.Title,
                       ImageUrl = this.db.Images.Where(i => i.Id == x.ImageId).Select(x => x.ImageUrl).FirstOrDefault(),
@@ -119,6 +119,8 @@
                   .Skip((page - 1) * itemsPerPage)
                   .Take(itemsPerPage)
                   .ToList();
+
+            ;
 
             return book;
         }
@@ -138,6 +140,25 @@
 
             return book;
         }
+
+        //public List<BookViewModel> GetPromotionalBooks()
+        //{
+        //    var book = this.db.Books
+        //            .Select(x => new BookViewModel
+        //            {
+        //                Price = x.Price.ToString(),
+        //                PromoPrice = x.PromoPrice.ToString(),
+        //                Author = x.Author,
+        //                Title = x.Title,
+        //                ImageUrl = this.db.Images.Where(i => i.Id == x.ImageId).Select(x => x.ImageUrl).FirstOrDefault(),
+        //                Id = x.Id,
+        //                IsOnPromotional = x.IsOnPromotional,
+        //            })
+        //            //.Where(x => x.IsOnPromotional == true)
+        //            .ToList();
+        //    ;
+        //    return book;
+        //}
 
         public int GetCount()
         {
@@ -165,25 +186,7 @@
 
         public int GetPromotionalBooksCount()
         {
-            return this.db.Books.Where(x => x.IsOnPromotional == false).Count();
-        }
-
-        public List<BookViewModel> GetPromotionalBooks()
-        {
-            var book = this.db.Books
-                    .Select(x => new BookViewModel
-                    {
-                        Price = x.Price.ToString(),
-                        Author = x.Author,
-                        Title = x.Title,
-                        ImageUrl = this.db.Images.Where(i => i.Id == x.ImageId).Select(x => x.ImageUrl).FirstOrDefault(),
-                        Id = x.Id,
-                        IsOnPromotional = x.IsOnPromotional,
-                    })
-                    .Where(x => x.IsOnPromotional == true)
-                    .ToList();
-
-            return book;
+            return this.db.Books.Where(x => x.IsOnPromotional == true).Count();
         }
 
         public SingleBookViewModel GetById(int id)

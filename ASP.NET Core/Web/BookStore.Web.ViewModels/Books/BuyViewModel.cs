@@ -13,6 +13,8 @@
 
         public string Price { get; set; }
 
+        public string PromoPrice { get; set; }
+
         public string Author { get; set; }
 
         public int Pages { get; set; }

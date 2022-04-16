@@ -26,7 +26,7 @@
         [Range(0.50, 100)]
         public decimal Price { get; set; }
 
-        [Range(0.50, 100)]
+        [Range(0.00, 100)]
         public decimal PromoPrice { get; set; }
 
         [Required]
