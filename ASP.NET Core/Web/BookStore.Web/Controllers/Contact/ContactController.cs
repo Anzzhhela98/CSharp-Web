@@ -33,20 +33,29 @@
             return this.View(data);
         }
 
+        //[HttpPost]
+        //[Authorize]
+        //public IActionResult Index(ContactsViewModel model)
+        //{
+        //    if (!this.ModelState.IsValid)
+        //    {
+        //        return this.View();
+        //    }
+
+        //    this.contactsService.SetUserMessage(model);
+        //    return this.Redirect("~/Message");
+        //}
+
         [HttpPost]
         [Authorize]
-        public IActionResult Index(ContactsViewModel model)
+        public IActionResult Message(ContactsViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View();
             }
 
-            return this.View();
-        }
-
-        public IActionResult Message(ContactsViewModel model)
-        {
+            this.contactsService.SetUserMessage(model);
             return this.View();
         }
     }

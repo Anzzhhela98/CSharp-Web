@@ -5,5 +5,7 @@
     public interface IContactsService
     {
         RegisteredUserViewModel GetUserEmail(string userId);
+
+        public void SetUserMessage(ContactsViewModel model);
     }
 }

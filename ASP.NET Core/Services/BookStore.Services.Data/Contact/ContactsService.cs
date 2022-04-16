@@ -2,22 +2,24 @@
 {
     using System;
     using System.Linq;
-
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
     using BookStore.Data;
+    using BookStore.Data.Models;
     using BookStore.Web.ViewModels.Contact;
 
     public class ContactsService : IContactsService
     {
-        private readonly ApplicationDbContext applicationDbContext;
+        private readonly ApplicationDbContext db;
 
-        public ContactsService(ApplicationDbContext applicationDbContext)
+        public ContactsService(ApplicationDbContext db)
         {
-            this.applicationDbContext = applicationDbContext;
+            this.db = db;
         }
 
         public RegisteredUserViewModel GetUserEmail(string id)
         {
-            var user = this.applicationDbContext
+            var user = this.db
                 .Users
                 .Where(x => x.Id == id)
                 .Select(x => new RegisteredUserViewModel
@@ -27,6 +29,21 @@
                 .FirstOrDefault();
 
             return user;
+        }
+
+        public void SetUserMessage(ContactsViewModel model)
+        {
+            var message = new UserQuestion
+            {
+                Email = model.Email,
+                Question = model.Question,
+                Phone = model.Phone,
+                OrderNumber = model.OrderNumber,
+                CreatedOn = DateTime.UtcNow,
+            };
+
+            this.db.UserQuestions.Add(message);
+            this.db.SaveChanges();
         }
     }
 }

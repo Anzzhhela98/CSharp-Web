@@ -63,8 +63,9 @@
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ImageUrl,Extension,CreatedByUserId,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Image image)
+        public async Task<IActionResult> Create([Bind("ImageUrl,Extension,CreatedByUserId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] Image image)
         {
+                image.Id = Guid.NewGuid().ToString();
             if (this.ModelState.IsValid)
             {
                 await this.imageRepository.AddAsync(image);

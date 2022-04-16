@@ -12,6 +12,8 @@
 
         public int Id { get; set; }
 
+        public string PromoPrice { get; set; }
+
         public bool IsOnPromotional { get; set; }
 
     }

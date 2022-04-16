@@ -4,74 +4,175 @@
     this.ViewData["Title"] = $"Contact";
 }
 
-<main id="maincontent" class="page-main"><a href="#" id="contentarea" tabindex="-1" style="visibility: hidden; display:none;">skip</a>
-<div class="columns col1-layout"><div class="container"><div class="row"><div class="col-lg-12 col-md-12"> <div class="page-title-wrapper">
-<h2 class="page-title">
-<span class="base" data-ui-id="page-title-wrapper">CONTACT US</span> </h2>
-</div>
-<div class="page messages"><div data-placeholder="messages"></div>
-<div data-bind="scope: 'messages'">
-<!-- ko if: cookieMessages && cookieMessages.length > 0 --><!-- /ko -->
-<!-- ko if: messages().messages && messages().messages.length > 0 --><!-- /ko -->
-</div>
+@*<main id="maincontent" class="page-main"><a href="#" id="contentarea" tabindex="-1" style="visibility: hidden; display:none;">skip</a>
+    <div class="columns col1-layout"><div class="container"><div class="row"><div class="col-lg-12 col-md-12"> <div class="page-title-wrapper">
+    <h2 class="page-title">
+    <span class="base" data-ui-id="page-title-wrapper">CONTACT US</span> </h2>
+    </div>
+    <div class="page messages"><div data-placeholder="messages"></div>
+    <div data-bind="scope: 'messages'">
+    </div>
 
-</div><div class="column main"><input name="form_key" type="hidden" value="6UDsgfy8dei14BgE">
+    </div><div class="column main"><input name="form_key" type="hidden" value="6UDsgfy8dei14BgE">
 
 
 
-<div></div><div class="contact-us-page">
+    <div></div><div class="contact-us-page">
 
-<div class="row form-contact">
-<div class="col-lg-4 col-md-4">
-<div class="contact-info">
-<div class="contact-content">
-<p class="contact-description">For all online order queries please remember to have your order number to hand when you call or to include them in any written correspondence by e-mail.</p>
-<ul class="address-info">
-<li class="add-icon">1408 Sofia, 24 "Dr. Stefan Sarafov" str.,<br> block 3, office 1</li>
-<li class="phone-icon">
-<strong>тел.:</strong> <a title="Call" href="tel:02 421 58 51">02 221 58 51</a>
-</li>
-<li class="phone-icon">
-<strong>моб.:</strong> <a title="Call" href="tel:0893 305 100">0983 305 100</a>
-</li>
-<li class="email-icon">
-<strong>e-mail:</strong> <a title="Send Email" href="mailto:pickAbook@book.bg">pickAbook@book.bg</a>
-</li>
-<li class="email-icon">
-<strong>e-mail:</strong> <a title="Send Email" href="mailto:pickAbook@book.bg">pickAbook@book.bg</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-lg-8 col-md-8">
-        <div asp-validation-summary="All" class="text-center"></div>
-        <form method="POST" role="form" class="form" asp-controller="Contacts" asp-action="Index">
-          <div class="form-group">
-            <input type="email" class="form-control border-0 bg-smoke" asp-for="Email" placeholder="Your Email">
-            <span asp-validation-for="Email"  class="badge bg-danger"></span><br />
-          </div>
+    <div class="row form-contact">
+    <div class="col-lg-4 col-md-4">
+    <div class="contact-info">
+    <div class="contact-content">
+    <p class="contact-description">For all online order queries please remember to have your order number to hand when you call or to include them in any written correspondence by e-mail.</p>
+    <ul class="address-info">
+    <li class="add-icon">1408 Sofia, 24 "Dr. Stefan Sarafov" str.,<br> block 3, office 1</li>
+    <li class="phone-icon">
+    <strong>тел.:</strong> <a title="Call" href="tel:02 421 58 51">02 221 58 51</a>
+    </li>
+    <li class="phone-icon">
+    <strong>моб.:</strong> <a title="Call" href="tel:0893 305 100">0983 305 100</a>
+    </li>
+    <li class="email-icon">
+    <strong>e-mail:</strong> <a title="Send Email" href="mailto:pickAbook@book.bg">pickAbook@book.bg</a>
+    </li>
+    <li class="email-icon">
+    <strong>e-mail:</strong> <a title="Send Email" href="mailto:pickAbook@book.bg">pickAbook@book.bg</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+    </div>
 
-          <div class="form-group">
-            <input type="number" class="form-control border-0 bg-smoke" asp-for="Phone" placeholder="Your Phone">
-            <span asp-validation-for="Phone"  class="badge bg-danger"></span><br />
-          </div>
+    <div class="col-lg-8 col-md-8"
+    <div asp-validation-summary="All" class="text-center"></div>
+    <form method="POST" role="form" class="form" asp-controller="Contacts" asp-action="Index">
+    <div class="form-group">
+    <input type="email" class="form-control border-0 bg-smoke" asp-for="Email" placeholder="Your Email">
+    <span asp-validation-for="Email"  class="badge bg-danger"></span><br />
+    </div>
 
-          <div class="form-group">
-            <textarea class="form-control border-0 bg-smoke" rows="6" asp-for="Question" placeholder="Your Message"></textarea>
-            <span asp-validation-for="Question"  class="badge bg-danger"></span><br />
-          </div>
-          
-          <div class="form-group">
-            <textarea class="form-control border-0 bg-smoke" rows="6" asp-for="OrderNumber" placeholder="Order Number"></textarea>
-            <span asp-validation-for="OrderNumber"  class="badge bg-danger"></span><br />
-          </div>
+    <div class="form-group">
+    <input type="number" class="form-control border-0 bg-smoke" asp-for="Phone" placeholder="Your Phone">
+    <span asp-validation-for="Phone"  class="badge bg-danger"></span><br />
+    </div>
 
-          <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-primary text-uppercase">send message</button>
-          </div>
-        </form>
-</div>
-</div>
-</div>
-</div></div></div></div></div></main>
+    <div class="form-group">
+    <textarea class="form-control border-0 bg-smoke" rows="6" asp-for="Question" placeholder="Your Message"></textarea>
+    <span asp-validation-for="Question"  class="badge bg-danger"></span><br />
+    </div>
+
+    <div class="form-group">
+    <textarea class="form-control border-0 bg-smoke" rows="6" asp-for="OrderNumber" placeholder="Order Number"></textarea>
+    <span asp-validation-for="OrderNumber"  class="badge bg-danger"></span><br />
+    </div>
+
+    <div class="d-flex justify-content-end">
+    <input  class="btn btn-dark btn-block" type="submit" value = "send message" asp-controller="Contact" asp-action="Message" asp-route-id = "@this.User" class="btn btn-primary" />
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div></div></div></div></div></main>*@
+
+<section class="mb-4">
+
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+    <!--Section description-->
+    <p class="text-center w-responsive mx-auto mb-5">
+        Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
+        a matter of hours to help you.
+    </p>
+
+    <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-9 mb-md-0 mb-5">
+            <div asp-validation-summary="All" class="text-center"></div>
+            <form method="POST" role="form" class="form" asp-controller="Contacts" asp-action="Index">
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="number" class="form-control border-0 bg-smoke" asp-for="Phone" placeholder="Your Phone">
+                            <span asp-validation-for="Phone" class="badge bg-danger"></span><br />
+                        </div>
+                    </div>
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="email" class="form-control border-0 bg-smoke" asp-for="Email" placeholder="Your Email">
+                            <span asp-validation-for="Email" class="badge bg-danger"></span><br />
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+                <!--Grid row-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0">
+                            @*<textarea class="form-control border-0 bg-smoke" rows="6" asp-for="OrderNumber" placeholder="Order Number"></textarea>*@
+                            <input type="text" id="subject" asp-for="OrderNumber" placeholder="Order Number" name="subject" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <!--Grid row-->
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-12">
+
+                        <div class="md-form">
+                            <textarea class="form-control border-0 bg-smoke" rows="6" asp-for="Question" placeholder="Your Message"></textarea>
+                            <span asp-validation-for="Question" class="badge bg-danger"></span><br />
+                        </div>
+
+                    </div>
+                     <div class="form-group">
+                         <div>
+                <input asp-controller="Contact" asp-action="Message" class="btn btn-dark btn-block" type="submit" value="send message"  />
+                         </div>
+
+            </div>
+                </div>
+                <!--Grid row-->
+
+            </form>
+            <div class="status"></div>
+        </div>
+        <!--Grid column-->
+        <!--Grid column-->
+        <div class="col-md-3 text-center">
+            <ul class="list-unstyled mb-0">
+                <li>
+                    <i class="fas fa-map-marker-alt fa-2x"></i>
+                    <p>1408 Sofia, 24 "Dr. Stefan Sarafov" str.</p>
+                </li>
+
+                <li>
+                    <i class="fas fa-phone mt-4 fa-2x"></i>
+                    <li class="phone-icon">
+    <a title="Call" href="tel:0893 305 100">0983 305 100</a>
+                </li>
+
+                <li>
+                    <i class="fas fa-envelope mt-4 fa-2x"></i>
+                    <div>
+                        <a title="Send Email" href="mailto:pickAbook@book.bg">pickAbook@book.bg</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--Grid column-->
+
+    </div>
+
+</section>

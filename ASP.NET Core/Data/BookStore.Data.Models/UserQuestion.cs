@@ -5,19 +5,21 @@
 
     using BookStore.Data.Common.Models;
 
-    public class UserQuestion : IAuditInfo
+    public class UserQuestion : BaseDeletableModel<int>
     {
-        public int Id { get; init; }
-
         [Required]
         public string Question { get; set; }
 
-        [Required]
+        [Display(Name = "Email address")]
+        [Required(ErrorMessage = "The email address is required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Mobile no. is required")]
+        [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
 
+        [MinLength(4)]
         public string OrderNumber { get; set; }
 
         public DateTime CreatedOn { get; set; }

@@ -1,11 +1,8 @@
 ﻿namespace BookStore.Web.Areas.Administration.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
-    using BookStore.Data;
     using BookStore.Data.Common.Repositories;
     using BookStore.Data.Models;
     using Microsoft.AspNetCore.Mvc;
@@ -40,7 +37,7 @@
         {
             if (id == null)
             {
-                return this.NotFound();
+                 return this.Redirect("~/PageNotFount");
             }
 
             var book = await this.bookRepository.AllWithDeleted()
@@ -70,7 +67,7 @@
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Author,Description,Quantity,Price,Pages,Cover,Language,Year,DateOfPublication,UniqueIdBook,ISBN,IsOnPromotional,ImageId,CategoryId,CreatedByUserId,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Book book)
+        public async Task<IActionResult> Create([Bind("Title,Author,Description,Quantity,Price,Pages,Cover,Language,Year,DateOfPublication,UniqueIdBook,ISBN,IsOnPromotional,ImageId,CategoryId,CreatedByUserId,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn, PromoPrice")] Book book)
         {
             if (this.ModelState.IsValid)
             {
@@ -90,13 +87,13 @@
         {
             if (id == null)
             {
-                return this.NotFound();
+                return this.Redirect("~/PageNotFount");
             }
 
             var book = this.bookRepository.AllWithDeleted().FirstOrDefault(x => x.Id == id);
             if (book == null)
             {
-                return this.NotFound();
+                return this.Redirect("~/PageNotFount");
             }
 
             this.ViewData["CategoryId"] = new SelectList(this.categoryRepository.AllWithDeleted(), "Id", "Type", book.CategoryId);
@@ -110,11 +107,11 @@
         //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Title,Author,Description,Quantity,Price,Pages,Cover,Language,Year,DateOfPublication,UniqueIdBook,ISBN,IsOnPromotional,ImageId,CategoryId,CreatedByUserId,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Book book)
+        public async Task<IActionResult> Edit(int id, [Bind("Title,Author,Description,Quantity,Price,Pages,Cover,Language,Year,DateOfPublication,UniqueIdBook,ISBN,IsOnPromotional,ImageId,CategoryId,CreatedByUserId,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn,PromoPrice")] Book book)
         {
             if (id != book.Id)
             {
-                return this.NotFound();
+                return this.Redirect("~/PageNotFount");
             }
 
             if (this.ModelState.IsValid)
@@ -128,7 +125,7 @@
                 {
                     if (!this.BookExists(book.Id))
                     {
-                        return this.NotFound();
+                        return this.Redirect("~/PageNotFount");
                     }
                     else
                     {
@@ -148,9 +145,10 @@
         //// GET: Administration/Books/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            ;
             if (id == null)
             {
-                return this.NotFound();
+                return this.Redirect("~/PageNotFount");
             }
 
             var book = await this.bookRepository.All()
@@ -160,7 +158,7 @@
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (book == null)
             {
-                return this.NotFound();
+                return this.Redirect("~/PageNotFount");
             }
 
             return this.View(book);
