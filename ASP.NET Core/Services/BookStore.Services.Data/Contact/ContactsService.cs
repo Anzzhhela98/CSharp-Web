@@ -2,8 +2,6 @@
 {
     using System;
     using System.Linq;
-    using AutoMapper;
-    using AutoMapper.QueryableExtensions;
     using BookStore.Data;
     using BookStore.Data.Models;
     using BookStore.Web.ViewModels.Contact;

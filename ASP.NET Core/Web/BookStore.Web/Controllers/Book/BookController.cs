@@ -1,12 +1,10 @@
 ﻿namespace BookStore.Web.Controllers
 {
     using System.Linq;
-    using System.Security.Claims;
 
     using BookStore.Data.Models;
     using BookStore.Services.Data.Book;
     using BookStore.Web.ViewModels.Books;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -98,6 +96,18 @@
             }
 
             return this.Redirect("/Identity/Account/Login");
+        }
+
+        public IActionResult EveryMonthNew()
+        {
+            var books = this.booksService.GetMonthBok();
+
+            if (!books.Any())
+            {
+                return this.Redirect("/");
+            }
+
+            return this.View(books);
         }
     }
 }

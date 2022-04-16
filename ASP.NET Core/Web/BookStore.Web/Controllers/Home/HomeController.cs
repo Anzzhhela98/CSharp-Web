@@ -24,7 +24,7 @@
             return this.View(randomBooks);
         }
 
-        public IActionResult Publishing()
+        public IActionResult AboutUs()
         {
             return this.View();
         }

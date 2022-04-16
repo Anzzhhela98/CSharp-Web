@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
 
@@ -212,6 +213,30 @@
                 .To<IndexPageBookViewModel>()
                 .Take(8)
                 .ToList();
+        }
+
+        public List<EveryMonthBooksViewModel> GetMonthBok()
+        {
+            var books = this.db.Books
+            .To<EveryMonthBooksViewModel>()
+            .ToList();
+
+            var booksInCurrentMonth = new List<EveryMonthBooksViewModel>();
+            var currentfullMonthName = DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture);
+
+            foreach (var book in books)
+            {
+                var date = book.CreatedOn;
+                DateTime datevalue = Convert.ToDateTime(date.ToString());
+                string currentMonth = datevalue.ToString("MMMM", CultureInfo.CreateSpecificCulture("us"));
+
+                if (currentMonth == currentfullMonthName)
+                {
+                    booksInCurrentMonth.Add(book);
+                }
+            }
+
+            return booksInCurrentMonth;
         }
     }
 }
