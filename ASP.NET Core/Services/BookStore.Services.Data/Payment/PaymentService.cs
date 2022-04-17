@@ -24,8 +24,9 @@
             {
                 var book = this.db.Books.Where(x => x.Id == model.Id).FirstOrDefault();
                 price = (book.Price * model.Count) + 3.8M;
-                model.TotalPriceTransfer = Convert.ToInt64(price* 100);
+                model.TotalPriceTransfer = Convert.ToInt64(price * 100);
             }
+
             var paymentIntents = new PaymentIntentService();
             var customers = new CustomerService();
             var charges = new ChargeService();

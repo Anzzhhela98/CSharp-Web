@@ -16,7 +16,8 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IHttpContextAccessor httpContextAccessor;
 
-        public BookController(UserManager<ApplicationUser> userManager, IAuthorService authorizedToCreateBook, IHttpContextAccessor httpContextAccessor, IBooksService booksService)
+        public BookController(UserManager<ApplicationUser> userManager, IAuthorService authorizedToCreateBook, 
+            IHttpContextAccessor httpContextAccessor, IBooksService booksService)
         {
             this.userManager = userManager;
             this.authorizedToCreateBook = authorizedToCreateBook;

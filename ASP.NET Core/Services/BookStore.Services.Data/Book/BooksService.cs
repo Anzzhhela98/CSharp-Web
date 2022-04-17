@@ -106,6 +106,7 @@
             {
                 book = book.OrderByDescending(x => x.Price).ToList();
             }
+
             if (sort == "Name")
             {
                 book = book.OrderBy(x => x.Title).ToList();
@@ -140,6 +141,7 @@
 
         public List<BookViewModel> GetAll()
         {
+            ;
             var book = this.db.Books
                 .Where(x => x.IsDeleted == false)
                     .Select(x => new BookViewModel
