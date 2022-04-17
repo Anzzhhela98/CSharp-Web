@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<BookStore.Data.Models.Book>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Books";
 }
 
 @{
@@ -9,156 +9,112 @@
     string disable2 = "disable";    // or string disable2 = null;
 }
 
-<h1>Index</h1>
+<h1>Books</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
+    <a asp-action="Create" class="btn btn-primary btn-dark">Create New</a>
 </p>
-<table class="table table-bordered table-hover table-striped">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PromoPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pages)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cover)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Language)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Year)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateOfPublication)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UniqueIdBook)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ISBN)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsOnPromotional)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedByUser)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsDeleted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeletedOn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedOn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModifiedOn)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+
+<div class="table-responsive">
+    <table class="table table-striped table-dark">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Author)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PromoPrice)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pages)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cover)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Language)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Year)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateOfPublication)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UniqueIdBook)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ISBN)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsOnPromotional)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Image.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category.Type)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedByUser.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsDeleted)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DeletedOn)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedOn)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ModifiedOn)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    @if (!item.IsDeleted)
-                    {
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    }
-                </td>
+                <th scope="col"> @Html.DisplayNameFor(model => model.Title)            </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.Author)           </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.Quantity)         </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.Price)            </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.PromoPrice)       </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.Pages)            </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.Language)         </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.Cover)            </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.Year)             </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.DateOfPublication)</th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.UniqueIdBook)     </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.ISBN)             </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.IsOnPromotional)  </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.Image)            </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.Category)         </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.CreatedByUser)    </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.IsDeleted)        </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.DeletedOn)        </th>
+                <th scope="col"> @Html.DisplayNameFor(model => model.CreatedOn)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.ModifiedOn)</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Author)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PromoPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pages)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cover)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Language)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Year)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOfPublication)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UniqueIdBook)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ISBN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsOnPromotional)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Image.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedByUser.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsDeleted)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DeletedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedOn)
+                    </td>
+                    <td>
+                        <a type="button" class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                        <a type="button" class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                        @if (!item.IsDeleted)
+                        {
+                            <a type="button" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,15 @@
+﻿@model BookStore.Web.ViewModels.Contact.AdminAnswer
+
+<form method="post">
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div>
+    <label asp-for="Answer"></label>
+    <input asp-for="Answer" class="form-control" />
+    <span asp-validation-for="Answer" class="text-danger"></span>
+    </div>
+    <input type="submit" />
+</form>

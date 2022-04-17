@@ -28,7 +28,7 @@
         // GET: Administration/Orders
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = this.orderRepository.All().Include(o => o.Book).Include(o => o.CreatedByUser);
+            var applicationDbContext = this.orderRepository.All().Include(o => o.Book).Include(o => o.CreatedByUser).OrderBy(x => x.Status);
             return this.View(await applicationDbContext.ToListAsync());
         }
 

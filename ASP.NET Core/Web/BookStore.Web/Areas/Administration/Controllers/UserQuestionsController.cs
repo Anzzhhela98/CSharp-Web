@@ -2,9 +2,10 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
-
+    using BookStore.Data;
     using BookStore.Data.Common.Repositories;
     using BookStore.Data.Models;
+    using BookStore.Web.ViewModels.Contact;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
@@ -12,14 +13,20 @@
     public class UserQuestionsController : AdministrationController
     {
         private readonly IDeletableEntityRepository<UserQuestion> userQuestionRepository;
+        private readonly ApplicationDbContext applicationDbContext;
 
-        public UserQuestionsController(IDeletableEntityRepository<UserQuestion> userQuestionRepository)
+        public UserQuestionsController(IDeletableEntityRepository<UserQuestion> userQuestionRepository, ApplicationDbContext applicationDbContext)
         {
             this.userQuestionRepository = userQuestionRepository;
+            this.applicationDbContext = applicationDbContext;
         }
 
         // GET: Administration/UserQuestions
-        public async Task<IActionResult> Index() => View(await this.userQuestionRepository.AllWithDeleted().ToListAsync());
+        public async Task<IActionResult> Index()
+        {
+            var userQuestions = this.userQuestionRepository.AllWithDeleted().OrderBy(x => x.IsAnswer).ToListAsync();
+            return View(await userQuestions);
+        }
 
         // GET: Administration/UserQuestions/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -149,6 +156,21 @@
         private bool UserQuestionExists(int id)
         {
             return this.userQuestionRepository.All().Any(e => e.Id == id);
+        }
+
+        public async Task<IActionResult> Answer(int id)
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Answer(AdminAnswer adminAnswer)
+        {
+            var question = this.applicationDbContext.UserQuestions.FirstOrDefault(x => x.Id == adminAnswer.Id);
+            question.IsAnswer = true;
+            this.applicationDbContext.SaveChanges();
+
+            return this.RedirectToAction("Index");
         }
     }
 }

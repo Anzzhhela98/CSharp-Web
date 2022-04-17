@@ -19,6 +19,8 @@
         [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
 
+        public bool IsAnswer { get; set; }
+
         [MinLength(4)]
         public string OrderNumber { get; set; }
 

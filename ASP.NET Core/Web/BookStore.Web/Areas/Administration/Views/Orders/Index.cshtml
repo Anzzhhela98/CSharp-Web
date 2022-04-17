@@ -7,14 +7,14 @@
 <h1>Orders</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
+    <a asp-action="Create" class="btn btn-primary btn-dark">Create New</a>
 </p>
-<div class="row row-bordered table-hover table-striped">
+<div class="row row-bordered table-striped">
     <div class="col-lg-15">
         <div class="card">
                 <div class="active-member">
                     <div class="table-responsive">
-                        <table class="table table-xs mb-0">
+                        <table class="table table-xs mb-0 table-striped table-dark">
                             <thead>
                                 <tr>
                                     <th>Order</th>
@@ -78,9 +78,9 @@
                                             <span>@item.CreatedOn</span>
                                         </td>
                                         <td>
-                                            <a asp-action="Edit" asp-route-id="@item.Id">Lock</a> |
-                                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Lock</a> 
+                                            <a class="btn btn-info"asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                                         </td>
                                     </tr>
                                 }

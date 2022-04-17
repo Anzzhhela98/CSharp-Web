@@ -29,7 +29,15 @@
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = this.imageRepository.AllWithDeleted().Include(i => i.CreatedByUser);
-            return this.View(await applicationDbContext.ToListAsync());
+            var images = new List<Image>();
+
+            foreach (var image in applicationDbContext)
+            {
+                image.ImageUrl = image.ImageUrl.Substring(0, 20) + "...";
+                images.Add(image);
+            }
+
+            return this.View(images);
         }
 
         // GET: Administration/Images/Details/5
@@ -65,7 +73,7 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ImageUrl,Extension,CreatedByUserId,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] Image image)
         {
-                image.Id = Guid.NewGuid().ToString();
+            image.Id = Guid.NewGuid().ToString();
             if (this.ModelState.IsValid)
             {
                 await this.imageRepository.AddAsync(image);
