@@ -26,7 +26,6 @@
                 price = (book.Price * model.Count) + 3.8M;
                 model.TotalPriceTransfer = Convert.ToInt64(price* 100);
             }
-            ;
             var paymentIntents = new PaymentIntentService();
             var customers = new CustomerService();
             var charges = new ChargeService();

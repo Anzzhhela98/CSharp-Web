@@ -86,9 +86,8 @@
             this.db.SaveChanges();
         }
 
-        public IEnumerable<BookInListModel> GetAll(int page, string sort, int itemsPerPage = 4)
+        public IEnumerable<BookInListModel> GetAll(int page, string sort, int itemsPerPage = 6)
         {
-            ;
             var book = this.db.Books
                   .Select(x => new BookInListModel
                   {
@@ -135,8 +134,6 @@
                   .Skip((page - 1) * itemsPerPage)
                   .Take(itemsPerPage)
                   .ToList();
-
-            ;
 
             return book;
         }

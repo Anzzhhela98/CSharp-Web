@@ -36,10 +36,10 @@
         {
             var userId = this.httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            if (!this.ModelState.IsValid)
-            {
-                return this.View();
-            }
+            //if (!this.ModelState.IsValid)
+            //{
+            //    return this.View();
+            //}
 
             if (!this.booksService.EnoughQuantity(model.Id, model.Count))
             {

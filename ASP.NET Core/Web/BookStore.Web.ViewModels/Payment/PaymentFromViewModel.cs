@@ -19,7 +19,5 @@
         public string StripeToken { get; set; }
 
         public string StripeEmail { get; set; }
-
     }
-
 }
