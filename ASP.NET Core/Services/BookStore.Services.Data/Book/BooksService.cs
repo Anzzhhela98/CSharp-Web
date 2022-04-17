@@ -96,7 +96,6 @@
                       Author = x.Author,
                       Title = x.Title,
                       CreatedOn = DateTime.Now,
-                      Sort = sort,
                       ImageUrl = this.db.Images.Where(i => i.Id == x.ImageId).Select(x => x.ImageUrl).FirstOrDefault(),
                       Id = x.Id,
                   })
