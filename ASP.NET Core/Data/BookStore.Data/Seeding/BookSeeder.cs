@@ -10,15 +10,12 @@
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
+            var createdByUserId = dbContext.Users.FirstOrDefault().Id;
+            var imagesId = dbContext.Images.Select(x => x.Id).ToArray();
+            ;
+
             if (dbContext.Books.Any())
             {
-                ////foreach (var id in dbContext.Books.Select(e => e.Id))
-                ////{
-                ////    var entity = new Book { Id = id };
-                ////    dbContext.Books.Attach(entity);
-                ////    dbContext.Books.Remove(entity);
-                ////};
-                ///
                 return;
             }
 
@@ -36,10 +33,10 @@
                 DateOfPublication = "Apr 1, 2022",
                 UniqueIdBook = "614331",
                 ISBN = "9789542621478",
-                ImageId = "bdff8c18-09bf-413a-ad80-25120fe04253",
+                ImageId = imagesId[0],
                 IsOnPromotional = false,
-                CategoryId = 32,
-                CreatedByUserId = "1ae93590-714e-488f-aef6-622473947f4b",
+                CategoryId = 1,
+                CreatedByUserId = createdByUserId,
             });
 
             await dbContext.Books.AddAsync(new Book
@@ -56,10 +53,10 @@
                 DateOfPublication = "22.03.2022 г.",
                 UniqueIdBook = "614288",
                 ISBN = "9789542838487",
-                ImageId = "875a082f-6d8a-4195-966d-34fda801fd2d",
+                ImageId = imagesId[1],
                 IsOnPromotional = true,
-                CategoryId = 7,
-                CreatedByUserId = "560393c3-cd12-416b-b420-b07a0e074db6",
+                CategoryId = 2,
+                CreatedByUserId = createdByUserId,
             });
 
             await dbContext.Books.AddAsync(new Book
@@ -76,10 +73,10 @@
                 DateOfPublication = "25.02.2022 г.",
                 UniqueIdBook = "614156",
                 ISBN = "9786191517817",
-                ImageId = "7e345f0f-0c79-4ef5-8a1a-a7fc8d40052c",
+                ImageId = imagesId[2],
                 IsOnPromotional = true,
-                CategoryId = 20,
-                CreatedByUserId = "1ae93590-714e-488f-aef6-622473947f4b",
+                CategoryId = 3,
+                CreatedByUserId = createdByUserId,
             });
 
             await dbContext.Books.AddAsync(new Book
@@ -96,10 +93,10 @@
                 DateOfPublication = "7.02.2022 г.",
                 UniqueIdBook = "83744",
                 ISBN = "9786191952458",
-                ImageId = "9a706910-5f62-4fc5-b954-32fd0c3c8bd9",
+                ImageId = imagesId[3],
                 IsOnPromotional = false,
-                CategoryId = 32,
-                CreatedByUserId = "1ae93590-714e-488f-aef6-622473947f4b",
+                CategoryId = 4,
+                CreatedByUserId = createdByUserId,
             });
 
             await dbContext.Books.AddAsync(new Book
@@ -116,10 +113,10 @@
                 DateOfPublication = "18.02.2022 г.",
                 UniqueIdBook = "614110",
                 ISBN = "9786191517817",
-                ImageId = "442bb5c0-c99c-440e-a191-17be24dec13b",
+                ImageId = imagesId[4],
                 IsOnPromotional = true,
                 CategoryId = 5,
-                CreatedByUserId = "560393c3-cd12-416b-b420-b07a0e074db6",
+                CreatedByUserId = createdByUserId,
             });
 
             await dbContext.Books.AddAsync(new Book
@@ -136,10 +133,10 @@
                 DateOfPublication = "4.12.2021 г.",
                 UniqueIdBook = "29324508",
                 ISBN = "9780349145082",
-                ImageId = "0c70370f-3086-4cbc-a0e8-8c8d17188f66",
+                ImageId = imagesId[5],
                 IsOnPromotional = false,
-                CategoryId = 17,
-                CreatedByUserId = "1ae93590-714e-488f-aef6-622473947f4b",
+                CategoryId = 6,
+                CreatedByUserId = createdByUserId,
             });
 
             await dbContext.Books.AddAsync(new Book
@@ -156,10 +153,10 @@
                 DateOfPublication = "18.06.2016 г.",
                 UniqueIdBook = "61847",
                 ISBN = "9789544464684",
-                ImageId = "9d73da44-cb60-4ac4-92c0-c13fb94be2ad",
+                ImageId = imagesId[6],
                 IsOnPromotional = false,
                 CategoryId = 5,
-                CreatedByUserId = "560393c3-cd12-416b-b420-b07a0e074db6",
+                CreatedByUserId = createdByUserId,
             });
 
             await dbContext.Books.AddAsync(new Book
@@ -176,10 +173,10 @@
                 DateOfPublication = "21.11.2016 г.",
                 UniqueIdBook = "603927",
                 ISBN = "603927",
-                ImageId = "c7eab172-83e7-459d-b2a6-005eaede0d31",
+                ImageId = imagesId[7],
                 IsOnPromotional = true,
-                CategoryId = 5,
-                CreatedByUserId = "560393c3-cd12-416b-b420-b07a0e074db6",
+                CategoryId = 9,
+                CreatedByUserId = createdByUserId,
             });
 
             await dbContext.Books.AddAsync(new Book
@@ -196,10 +193,10 @@
                 DateOfPublication = "17.02.2016 г.",
                 UniqueIdBook = "602360",
                 ISBN = "9786191506842",
-                ImageId = "9a706910-5f62-4fc5-b954-32fd0c3c8bd9",
+                ImageId = imagesId[8],
                 IsOnPromotional = true,
                 CategoryId = 19,
-                CreatedByUserId = "1ae93590-714e-488f-aef6-622473947f4b",
+                CreatedByUserId = createdByUserId,
             });
 
             await dbContext.Books.AddAsync(new Book
@@ -216,10 +213,10 @@
                 DateOfPublication = "13.03.2015 г.",
                 UniqueIdBook = "600252",
                 ISBN = "9786191504862",
-                ImageId = "2fd355c6-a775-463e-a4ef-bc04eb70ca03",
+                ImageId = imagesId[9],
                 IsOnPromotional = true,
                 CategoryId = 19,
-                CreatedByUserId = "1ae93590-714e-488f-aef6-622473947f4b",
+                CreatedByUserId = createdByUserId,
             });
         }
     }

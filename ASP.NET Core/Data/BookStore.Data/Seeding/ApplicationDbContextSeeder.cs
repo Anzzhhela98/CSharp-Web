@@ -23,10 +23,13 @@
 
             var logger = serviceProvider.GetService<ILoggerFactory>().CreateLogger(typeof(ApplicationDbContextSeeder));
 
+
+
             var seeders = new List<ISeeder>
                           {
                               new RolesSeeder(),
                               new SettingsSeeder(),
+                              new UserSeeder(),
                               new CategoriesSeeder(),
                               new ImageSeeder(),
                               new BookSeeder(),
